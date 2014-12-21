@@ -2,26 +2,26 @@ fileFormatVersion: 2
 guid: 0db8f6e9340f1a0428ff880682c787a4
 TextureImporter:
   fileIDToRecycleName:
-    21300000: Untitled-1_0
-    21300002: Untitled-1_1
-    21300004: Untitled-1_2
-    21300006: Untitled-1_3
-    21300008: Untitled-1_4
-    21300010: Untitled-1_5
-    21300012: Untitled-1_6
-    21300014: Untitled-1_7
-    21300016: Untitled-1_8
-    21300018: Untitled-1_9
-    21300020: Untitled-1_10
-    21300022: Untitled-1_11
-    21300024: Untitled-1_12
-    21300026: Untitled-1_13
-    21300028: Untitled-1_14
-    21300030: Untitled-1_15
-    21300032: Untitled-1_16
-    21300034: Untitled-1_17
-    21300036: Untitled-1_18
-    21300038: Untitled-1_19
+    21300000: Idle
+    21300002: walk1
+    21300004: walk2
+    21300006: walk3
+    21300008: walk4
+    21300010: walk5
+    21300012: walk6
+    21300014: walk7
+    21300016: walk8
+    21300018: walk9
+    21300020: jump1
+    21300022: jump2
+    21300024: jump3
+    21300026: jump4
+    21300028: jump5
+    21300030: fall2
+    21300032: fall2
+    21300034: fall2
+    21300036: fall2
+    21300038: fall1
     21300040: Untitled-1_20
     21300042: Untitled-1_21
     21300044: Untitled-1_22
@@ -33,6 +33,9 @@ TextureImporter:
     21300056: Untitled-1_28
     21300058: Untitled-1_29
     21300060: Untitled-1_30
+    21300062: fall3
+    21300064: fall4
+    21300066: fall5
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -74,7 +77,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Untitled-1_0
+    - name: Idle
       rect:
         serializedVersion: 2
         x: 0
@@ -82,9 +85,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_1
+    - name: walk1
       rect:
         serializedVersion: 2
         x: 8
@@ -92,9 +95,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_2
+    - name: walk2
       rect:
         serializedVersion: 2
         x: 16
@@ -102,9 +105,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_3
+    - name: walk3
       rect:
         serializedVersion: 2
         x: 24
@@ -112,9 +115,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_4
+    - name: walk4
       rect:
         serializedVersion: 2
         x: 32
@@ -122,9 +125,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_5
+    - name: walk5
       rect:
         serializedVersion: 2
         x: 40
@@ -132,9 +135,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_6
+    - name: walk6
       rect:
         serializedVersion: 2
         x: 48
@@ -142,9 +145,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_7
+    - name: walk7
       rect:
         serializedVersion: 2
         x: 56
@@ -152,9 +155,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_8
+    - name: walk8
       rect:
         serializedVersion: 2
         x: 64
@@ -162,9 +165,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_9
+    - name: walk9
       rect:
         serializedVersion: 2
         x: 72
@@ -172,9 +175,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_10
+    - name: jump1
       rect:
         serializedVersion: 2
         x: 0
@@ -182,9 +185,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_11
+    - name: jump2
       rect:
         serializedVersion: 2
         x: 8
@@ -192,9 +195,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_12
+    - name: jump3
       rect:
         serializedVersion: 2
         x: 16
@@ -202,9 +205,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_13
+    - name: jump4
       rect:
         serializedVersion: 2
         x: 24
@@ -212,9 +215,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_14
+    - name: jump5
       rect:
         serializedVersion: 2
         x: 32
@@ -222,9 +225,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_15
+    - name: fall1
       rect:
         serializedVersion: 2
         x: 40
@@ -232,9 +235,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_16
+    - name: fall2
       rect:
         serializedVersion: 2
         x: 48
@@ -242,9 +245,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_17
+    - name: fall3
       rect:
         serializedVersion: 2
         x: 56
@@ -252,9 +255,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_18
+    - name: fall4
       rect:
         serializedVersion: 2
         x: 64
@@ -262,9 +265,9 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_19
+    - name: fall5
       rect:
         serializedVersion: 2
         x: 72
@@ -272,7 +275,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_20
       rect:
@@ -282,7 +285,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_21
       rect:
@@ -292,7 +295,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_22
       rect:
@@ -302,7 +305,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_23
       rect:
@@ -312,7 +315,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_24
       rect:
@@ -322,7 +325,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_25
       rect:
@@ -332,7 +335,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_26
       rect:
@@ -342,7 +345,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_27
       rect:
@@ -352,7 +355,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_28
       rect:
@@ -362,7 +365,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_29
       rect:
@@ -372,7 +375,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: Untitled-1_30
       rect:
@@ -382,7 +385,7 @@ TextureImporter:
         width: 8
         height: 15
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: Player
   userData: 

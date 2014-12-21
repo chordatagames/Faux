@@ -22,20 +22,49 @@ TextureImporter:
     21300034: fall2
     21300036: fall2
     21300038: fall1
-    21300040: Untitled-1_20
-    21300042: Untitled-1_21
-    21300044: Untitled-1_22
-    21300046: Untitled-1_23
-    21300048: Untitled-1_24
-    21300050: Untitled-1_25
-    21300052: Untitled-1_26
-    21300054: Untitled-1_27
-    21300056: Untitled-1_28
-    21300058: Untitled-1_29
-    21300060: Untitled-1_30
+    21300040: idle0_1
+    21300042: idle0_2
+    21300044: idle1_1
+    21300046: idle1_2
+    21300048: idle1_3
+    21300050: idle1_4
+    21300052: idle1_5
+    21300054: idle1_6
+    21300056: idle1_7
+    21300058: idle1_8
+    21300060: idle2_1
     21300062: fall3
     21300064: fall4
     21300066: fall5
+    21300068: idle
+    21300070: walk1
+    21300072: walk2
+    21300074: walk3
+    21300076: walk4
+    21300078: walk5
+    21300080: walk6
+    21300082: walk7
+    21300084: walk8
+    21300086: walk9
+    21300088: jump1
+    21300090: jump2
+    21300092: jump3
+    21300094: jump4
+    21300096: jump5
+    21300098: fall1
+    21300100: fall2
+    21300102: fall3
+    21300104: fall4
+    21300106: fall5
+    21300108: idle2_2
+    21300110: idle2_3
+    21300112: idle2_4
+    21300114: idle2_5
+    21300116: idle2_6
+    21300118: idle2_7
+    21300120: idle2_8
+    21300122: idle2_9
+    21300124: idle2_10
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -77,7 +106,7 @@ TextureImporter:
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: Idle
+    - name: idle
       rect:
         serializedVersion: 2
         x: 0
@@ -277,7 +306,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_20
+    - name: idle0_1
       rect:
         serializedVersion: 2
         x: 0
@@ -287,7 +316,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_21
+    - name: idle0_2
       rect:
         serializedVersion: 2
         x: 8
@@ -297,7 +326,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_22
+    - name: idle1_1
       rect:
         serializedVersion: 2
         x: 16
@@ -307,7 +336,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_23
+    - name: idle1_2
       rect:
         serializedVersion: 2
         x: 24
@@ -317,7 +346,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_24
+    - name: idle1_3
       rect:
         serializedVersion: 2
         x: 32
@@ -327,7 +356,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_25
+    - name: idle1_4
       rect:
         serializedVersion: 2
         x: 40
@@ -337,7 +366,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_26
+    - name: idle1_5
       rect:
         serializedVersion: 2
         x: 48
@@ -347,7 +376,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_27
+    - name: idle1_6
       rect:
         serializedVersion: 2
         x: 56
@@ -357,7 +386,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_28
+    - name: idle1_7
       rect:
         serializedVersion: 2
         x: 64
@@ -367,7 +396,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_29
+    - name: idle1_8
       rect:
         serializedVersion: 2
         x: 72
@@ -377,10 +406,100 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Untitled-1_30
+    - name: idle2_1
       rect:
         serializedVersion: 2
         x: 0
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_2
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_3
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_4
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_6
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_7
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_8
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_9
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 8
+        height: 15
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: idle2_10
+      rect:
+        serializedVersion: 2
+        x: 72
         y: 0
         width: 8
         height: 15

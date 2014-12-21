@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate () 
 	{
-		if(Input.GetKey(KeyCode.W))
+		if(Input.GetKey(KeyCode.W))//TODO Check if grounded!
 		{
 			if(transform.InverseTransformVector(rigidbody2D.velocity).x < maxSpeed)
 			{

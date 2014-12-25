@@ -52,7 +52,7 @@ public class BoundPlayers : MonoBehaviour
 				furthestAway = p.transform.position;
 			}
 		}
-		camera.orthographicSize = (furthestAway-(Vector2)transform.position).magnitude;
+		camera.orthographicSize = Mathf.Clamp( ( furthestAway - (Vector2)transform.position ).magnitude, 2, 80);
 
 	}
 }

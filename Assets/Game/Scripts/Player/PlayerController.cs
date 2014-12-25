@@ -8,22 +8,20 @@ public class PlayerController : MonoBehaviour
 	public float maxSpeed, jumpForce, speed;
 	public bool grounded = false;
 	public LayerMask groundMask;
-	float distToGround;
 
 
 	void Start () 
 	{
-		distToGround = collider2D.bounds.extents.y + 0.1f;
-		
+		transform.localPosition += new Vector3(0, 0.5f, 0);
 	}
 
 	void Update () 
 	{
-		if(Input.GetKeyDown(KeyCode.E))
+		if(Input.GetKeyDown(KeyCode.X))
 		{
-			transform.Rotate(new Vector3( 0, 180));
+			transform.Rotate(0,180,0);
 		}
-		if(Input.GetKeyDown(KeyCode.D) && grounded)
+		if(Input.GetKeyDown(KeyCode.Z) && grounded)
 		{
 			rigidbody2D.AddForce( transform.TransformVector( new Vector2(0,jumpForce) ) );
 		}
@@ -31,13 +29,21 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate () 
 	{
-		if(Input.GetKey(KeyCode.W) && grounded)
+		if (grounded)
 		{
-			if(transform.InverseTransformVector(rigidbody2D.velocity).x < maxSpeed)
+			if(Input.GetKey(KeyCode.Space))
 			{
-				rigidbody2D.AddForce(transform.right * speed * Time.deltaTime);
+				if(transform.InverseTransformVector(rigidbody2D.velocity).x < maxSpeed)
+				{
+					rigidbody2D.AddForce(transform.right * speed);
+				}
 			}
+			rigidbody2D.drag = 0.075f;
 		}
-		grounded = Physics2D.Raycast(transform.position, -transform.up, distToGround, groundMask);
+		else
+		{
+			rigidbody2D.drag = 0.0025f;
+		}
+		grounded = Physics2D.Raycast(transform.position, -transform.up, 0.1f, groundMask);
 	}
 }

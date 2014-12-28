@@ -17,11 +17,11 @@ public class PlayerController : MonoBehaviour
 
 	void Update () 
 	{
-		if(Input.GetKeyDown(KeyCode.X))
+		if(Input.GetButtonDown("Flip"))
 		{
 			transform.Rotate(0,180,0);
 		}
-		if(Input.GetKeyDown(KeyCode.Z) && grounded)
+		if(Input.GetButtonDown("Jump") && grounded)
 		{
 			rigidbody2D.AddForce( transform.TransformVector( new Vector2(0,jumpForce) ) );
 		}
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 	{
 		if (grounded)
 		{
-			if(Input.GetKey(KeyCode.Space))
+			if(Input.GetButton("Accelerate") || Input.GetAxisRaw("Accelerate") !=0)
 			{
 				if(transform.InverseTransformVector(rigidbody2D.velocity).x < maxSpeed)
 				{

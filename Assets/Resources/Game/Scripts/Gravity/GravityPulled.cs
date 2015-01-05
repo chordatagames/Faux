@@ -4,10 +4,10 @@ using System.Collections;
 public class GravityPulled : MonoBehaviour 
 {
 	public bool keepUpright = false;
-
+	
 	GameObject[] attractors;
 	GameObject closest;
-
+	
 	float closestDist = float.MaxValue;
 
 	void Awake ()
@@ -30,7 +30,8 @@ public class GravityPulled : MonoBehaviour
 				closest = attractor;
 			}
 		}
+		closest.GetComponent<GravityAttractor>().Attract(gameObject, keepUpright);
 		closestDist = float.MaxValue;
-		GravityAttractor.Attract(closest, gameObject, keepUpright);
 	}
+
 }

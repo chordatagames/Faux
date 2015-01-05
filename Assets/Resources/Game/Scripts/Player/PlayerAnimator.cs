@@ -5,21 +5,23 @@ public class PlayerAnimator : MonoBehaviour
 {
 
 	Animator anim;
-	PlayerController PC;
 	Transform parent;
+	PlayerController PC;
 	
 	public float maxIdleTime = 40.0f, idleTime;
 
 	void Awake () 
 	{
 		anim = GetComponent<Animator>();
-
 		parent = transform.parent;
 		PC = parent.GetComponent<PlayerController>();
 	}
 
 	void Update () 
 	{
+
+		transform.localRotation = Quaternion.Euler( new Vector3(0,(PC.facingRight ? 0 : 180), 0));
+
 		anim.SetFloat("horizontalVelocity", transform.InverseTransformDirection(parent.rigidbody2D.velocity).x);
 		anim.SetFloat("verticalVelocity", transform.InverseTransformDirection(parent.rigidbody2D.velocity).y);
 		anim.SetBool("grounded", PC.grounded);

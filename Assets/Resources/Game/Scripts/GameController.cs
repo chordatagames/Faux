@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour
 	{
 		PlayerController pc;
 		PlayerCamera pCam;
-
+		Rect[] screens = GetSplitScreens();
 		//splitScreen ();
 
 		for (int i=0;i < World.players.Length; i++)
@@ -18,25 +18,34 @@ public class GameController : MonoBehaviour
 			GameObject player = World.players[i];
 			pc = player.GetComponent<PlayerController>();
 			pc.trackCam = new GameObject ("Player_" + pc.playerID + "_cam", typeof(Camera), typeof(PlayerCamera)).camera;
-
+			pc.trackCam.rect = screens[i];
+			Debug.Log ("What: " + screens[i]);
 			pCam = pc.trackCam.GetComponent<PlayerCamera>();
 			pCam.tracking = pc.gameObject;
 		}
 	}
-	//TODO fix all
-	Vector2[][] splitScreen()
+
+	Rect[] GetSplitScreens()
 	{
-		List<int> SHET = new List<int>();
-		int rows = Mathf.RoundToInt (Mathf.Sqrt (World.players.Length)); //ROWS
-		for (int i=0; i < rows; i++)
+		List<Rect> screens = new List<Rect>();
+		float players = World.players.Length;
+		int rows = Mathf.RoundToInt (Mathf.Sqrt (players));
+		int colsInRow;
+
+		for (int y=0; y < rows; y++)
 		{
-		//	for (int j=0; j < (World.players.Length % rows) ? World.players.Length / rows : (int)(World.players.Length / rows)+1; j++)
-		//	{
-				//GET VECTOR
-		//	}
+			colsInRow = Mathf.CeilToInt(players/(rows-y));
+			for (int x=0; x < colsInRow; x++)
+			{
+				screens.Add(GetScreenRect(x, y, colsInRow, rows));
+			}
+			players -= colsInRow;
 		}
-		int collumns = World.players.Length / rows;//COLLUMNS
-		return null;
+		return screens.ToArray();
 	}
 
+	Rect GetScreenRect(float x, float y, int colsInRow, int rows)
+	{	//Because the camera viewport is in normalized values, I don't need to use Screen.<width/height>
+		return new Rect( x/colsInRow, y/rows, 1f/colsInRow, 1f/rows);
+	}
 }

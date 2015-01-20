@@ -2,38 +2,54 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Throwable : MonoBehaviour 
+public class Throwable : MonoBehaviour , IWeaponThrowable
 {
-	public float timer, throwForce;
+	public float throwForce;
 
 	[HideInInspector]
-	public Transform spawnTransform;
+	public Vector2 throwDir;
+	public bool activated = false;
 	
-	void Start () 
+	public virtual void Start () 
 	{
-		rigidbody2D.AddForce ( (spawnTransform.right+spawnTransform.up/2).normalized * throwForce );
+		rigidbody2D.AddForce ( throwDir * throwForce );
 		Spawned ();
-	}
-	
-	void Update () 
-	{
-		timer-=Time.deltaTime;
-		if(timer < 0)
-		{
-			Activate ();
-		}
 	}
 	
 	public virtual void Spawned ()
 	{
-		StartCoroutine ("Living", 2);
+		StartCoroutine ( WaitingRoutine( 0.5f ) );
 	}
-	public virtual void Living ()
+
+	protected virtual IEnumerator WaitingRoutine(float interval)
+	{
+		while (!activated)
+		{
+			Wait(); //Functionality
+			yield return new WaitForSeconds(interval);
+		}
+	}
+
+	public virtual void Wait ()
 	{
 	}
 	public virtual void Activate ()
 	{
-		Destroy (this.gameObject);
-		StopCoroutine ("Living");
+		activated = true;
+		StartCoroutine (ActiveRoutine (0.5f));
+		//Destroy (this.gameObject);
+	}
+
+	protected virtual IEnumerator ActiveRoutine(float interval)
+	{
+		while (activated)
+		{
+			Active(); //Functionality
+			yield return new WaitForSeconds(interval);
+		}
+	}
+	
+	public virtual void Active ()
+	{
 	}
 }

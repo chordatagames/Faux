@@ -33,7 +33,7 @@ public class Bazooka : TimerBased
 				c.rigidbody2D.AddForce((c.transform.position - transform.position) * explotionForce);
 				if( c.GetComponent<Living>() != null )
 				{
-					c.GetComponent<Living>().Damage((-(c.transform.position - transform.position).magnitude * (c.transform.position - transform.position).magnitude + 1) * explotionForce);
+					c.GetComponent<Living>().Damage(((c.transform.position - transform.position).magnitude * (c.transform.position - transform.position).magnitude + 1) * explotionForce);
 				}
 			}
 		}

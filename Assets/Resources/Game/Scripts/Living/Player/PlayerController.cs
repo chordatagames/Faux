@@ -4,31 +4,22 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : Living
 {
+	public static int playerCount = 0;
+
 	[HideInInspector()]
 	public int playerID = 0;
-	static int playerCount = 0;
 	
-	[HideInInspector()]
-	public bool grounded = false, facingRight = true;
 	public float acceleration;
 	public float maxSpeed;
 	public float jumpForce;
-
 	private string[] Axes = {"Flip", "Jump", "Fire", "Acc", "AccAxis"};
 
-	private Camera _camera;
-	public Camera trackCam { get{ return _camera; } set{ _camera = value; } }
+	public Camera trackCam { get; set; }
 	
 	public LayerMask groundMask;
-	public Transform groundChild;
+	public Transform groundChild; //Will posibly be removed later, TODO use -transform.up*distToGround
 
-	public enum Weapon
-	{
-		GRENADE_LAUNCHER,
-		MASS_CHANGER,
-		RPG
-	}
-	public Weapon curWpn;
+	public Weapons curWpn;
 	Throwable usedThrowable;
 
 	void Awake ()
@@ -81,11 +72,11 @@ public class PlayerController : Living
 		grounded = Physics2D.Raycast(groundChild.position, -transform.up, 0.15f, groundMask);
 	}
 
-	void FireWeapon(Weapon wpnUsed)
+	void FireWeapon(Weapons wpnUsed)//TODO Move somewhere else
 	{
 		GameObject fired;
 
-		switch ( wpnUsed )
+		switch ( wpnUsed ) //http://unity3d.com/learn/tutorials/modules/intermediate/scripting/coding-practices
 		{
 		case Weapon.GRENADE_LAUNCHER:
 			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Grenade") );

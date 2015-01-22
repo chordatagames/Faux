@@ -21,9 +21,9 @@ public class Arrow : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
-
+		//canvasCam.orthosize * -aspect
 		Vector3 trackPos = tracking.transform.position - canvasCam.transform.position;
-		if(trackPos.x < canvasCam.orthographicSize * -canvasCam.aspect - margin || trackPos.x > canvasCam.orthographicSize * canvasCam.aspect + margin || 
+		if(trackPos.x < canvasCam.orthographicSize * (-canvasCam.rect.height/canvasCam.rect.width) - margin || trackPos.x > canvasCam.orthographicSize * canvasCam.aspect + margin || 
 		   trackPos.y < -canvasCam.orthographicSize - margin || trackPos.y > canvasCam.orthographicSize + margin)
 		{
 			GetComponent<CanvasRenderer>().SetAlpha(1);
@@ -44,7 +44,5 @@ public class Arrow : MonoBehaviour
 		float max = Mathf.Max (Mathf.Abs (dir.x), Mathf.Abs (dir.y * canvasCam.aspect));
 
 		rTrans.localPosition = new Vector3 (dir.x / max, dir.y / max) * canvasCam.pixelHeight;
-
-		Debug.Log (rTrans.anchoredPosition);
 	}
 }

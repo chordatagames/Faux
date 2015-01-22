@@ -19,7 +19,6 @@ public class GameController : MonoBehaviour
 			pc = player.GetComponent<PlayerController>();
 			pc.trackCam = new GameObject ("Player_" + pc.playerID + "_cam", typeof(Camera), typeof(PlayerCamera)).camera;
 			pc.trackCam.rect = screens[i];
-			Debug.Log ("What: " + screens[i]);
 			pCam = pc.trackCam.GetComponent<PlayerCamera>();
 			pCam.tracking = pc.gameObject;
 		}

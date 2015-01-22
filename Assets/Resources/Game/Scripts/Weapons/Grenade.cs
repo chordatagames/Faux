@@ -22,7 +22,6 @@ public class Grenade : TimerBased
 	{
 		base.Activate ();
 		Debug.DrawLine(transform.position - new Vector3(explotionSize, 0, 0), transform.position + new Vector3(explotionSize, 0, 0), Color.green, 100f);
-		Living damaging;
 
 		foreach (Collider2D c in Physics2D.OverlapCircleAll (transform.position, explotionSize))
 		{

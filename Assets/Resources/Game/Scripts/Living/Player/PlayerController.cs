@@ -75,21 +75,21 @@ public class PlayerController : Living
 	void FireWeapon(Weapons wpnUsed)//TODO Move somewhere else
 	{
 		GameObject fired;
-
+		//USE DELGATES
 		switch ( wpnUsed ) //http://unity3d.com/learn/tutorials/modules/intermediate/scripting/coding-practices
 		{
-		case Weapon.GRENADE_LAUNCHER:
+		case Weapons.GRENADE_LAUNCHER:
 			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Grenade") );
 			usedThrowable = fired.GetComponent<Grenade>();
 			usedThrowable.throwDir = (facingRight ? transform.right : -transform.right)+transform.up/2;
 			goto default;
-		case Weapon.RPG:
+		case Weapons.RPG:
 			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Bazooka") );
 			usedThrowable = fired.GetComponent<Bazooka>();
 			Debug.Log(usedThrowable);
 			usedThrowable.throwDir = (facingRight ? transform.right : -transform.right);
 			goto default;
-		case Weapon.MASS_CHANGER:
+		case Weapons.MASS_CHANGER:
 			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/MassChanger") );
 			usedThrowable = fired.GetComponent<MassChanger>();
 			usedThrowable.throwDir = (facingRight ? transform.right : -transform.right);

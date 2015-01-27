@@ -68,8 +68,8 @@ public class PlayerController : Living
 			{
 //				if(transform.InverseTransformVector(rigidbody2D.velocity).x < maxSpeed)
 //				{
-					Debug.DrawRay(transform.position, (facingRight ? transform.right : -transform.right),Color.magenta);
-					rigidbody2D.AddForce( (facingRight ? transform.right : -transform.right) * acceleration );
+				Debug.DrawRay(transform.position, (facingRight ? transform.right : -transform.right),Color.magenta);
+				rigidbody2D.AddForce( (facingRight ? transform.right : -transform.right) * acceleration );
 //				}
 			}
 			rigidbody2D.drag = 0.075f;
@@ -83,7 +83,8 @@ public class PlayerController : Living
 
 	void FireWeapon(Weapon wpnUsed)
 	{
-		GameObject fired;
+		Transform projectiles = GameObject.Find("Projectiles").transform;
+		GameObject fired = null;
 
 		switch ( wpnUsed )
 		{
@@ -104,6 +105,8 @@ public class PlayerController : Living
 			usedThrowable.throwDir = (facingRight ? transform.right : -transform.right);
 			goto default;
 		default:
+			if (fired != null)
+				fired.transform.parent = projectiles;
 			usedThrowable.rigidbody2D.velocity = rigidbody2D.velocity;
 			usedThrowable.transform.position = transform.position + (facingRight ? transform.right : -transform.right);
 			break;

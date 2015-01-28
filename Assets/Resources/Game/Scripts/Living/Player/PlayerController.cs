@@ -4,31 +4,22 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : Living
 {
+	public static int playerCount = 0;
+
 	[HideInInspector()]
 	public int playerID = 0;
-	static int playerCount = 0;
 	
-	[HideInInspector()]
-	public bool grounded = false, facingRight = true;
 	public float acceleration;
 	public float maxSpeed;
 	public float jumpForce;
-
 	private string[] Axes = {"Flip", "Jump", "Fire", "Acc", "AccAxis"};
 
-	private Camera _camera;
-	public Camera trackCam { get{ return _camera; } set{ _camera = value; } }
+	public Camera trackCam { get; set; }
 	
 	public LayerMask groundMask;
-	public Transform groundChild;
+	public Transform groundChild; //Will posibly be removed later, TODO use -transform.up*distToGround
 
-	public enum Weapon
-	{
-		GRENADE_LAUNCHER,
-		MASS_CHANGER,
-		RPG
-	}
-	public Weapon curWpn;
+	public Weapons curWpn;
 	Throwable usedThrowable;
 
 	void Awake ()
@@ -81,25 +72,31 @@ public class PlayerController : Living
 		grounded = Physics2D.Raycast(groundChild.position, -transform.up, 0.15f, groundMask);
 	}
 
-	void FireWeapon(Weapon wpnUsed)
+	void FireWeapon(Weapons wpnUsed)//TODO Move somewhere else
 	{
+<<<<<<< HEAD
 		Transform projectiles = GameObject.Find("Projectiles").transform;
 		GameObject fired = null;
 
 		switch ( wpnUsed )
+=======
+		GameObject fired;
+		//USE DELGATES
+		switch ( wpnUsed ) //http://unity3d.com/learn/tutorials/modules/intermediate/scripting/coding-practices
+>>>>>>> 6ef08e8e51d9865940ab058b63abcf9004a02044
 		{
-		case Weapon.GRENADE_LAUNCHER:
+		case Weapons.GRENADE_LAUNCHER:
 			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Grenade") );
 			usedThrowable = fired.GetComponent<Grenade>();
 			usedThrowable.throwDir = (facingRight ? transform.right : -transform.right)+transform.up/2;
 			goto default;
-		case Weapon.RPG:
+		case Weapons.RPG:
 			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Bazooka") );
 			usedThrowable = fired.GetComponent<Bazooka>();
 			Debug.Log(usedThrowable);
 			usedThrowable.throwDir = (facingRight ? transform.right : -transform.right);
 			goto default;
-		case Weapon.MASS_CHANGER:
+		case Weapons.MASS_CHANGER:
 			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/MassChanger") );
 			usedThrowable = fired.GetComponent<MassChanger>();
 			usedThrowable.throwDir = (facingRight ? transform.right : -transform.right);

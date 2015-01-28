@@ -4,7 +4,9 @@ using System.Collections;
 public class Living : MonoBehaviour, ILiving 
 {
 	public float health = 100;
-	public bool dead = false;
+	public bool dead 		{ get; set; }
+	public bool grounded 	{ get; set; }
+	public bool facingRight { get; set; }
 
 	protected virtual void Update ()
 	{
@@ -24,6 +26,6 @@ public class Living : MonoBehaviour, ILiving
 	// Update is called once per frame
 	public virtual void Damage (float dmgTaken)
 	{
-		health += dmgTaken;
+		health -= dmgTaken;
 	}
 }

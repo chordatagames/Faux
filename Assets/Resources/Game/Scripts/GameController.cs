@@ -8,6 +8,9 @@ public class GameController : MonoBehaviour
 
 	void Start ()
 	{
+		GameObject projectilesParent = new GameObject();
+		projectilesParent.name = "Projectiles";
+
 		PlayerController pc;
 		PlayerCamera pCam;
 		Rect[] screens = GetSplitScreens();

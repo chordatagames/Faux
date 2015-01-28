@@ -74,16 +74,10 @@ public class PlayerController : Living
 
 	void FireWeapon(Weapons wpnUsed)//TODO Move somewhere else
 	{
-<<<<<<< HEAD
 		Transform projectiles = GameObject.Find("Projectiles").transform;
 		GameObject fired = null;
-
-		switch ( wpnUsed )
-=======
-		GameObject fired;
 		//USE DELGATES
 		switch ( wpnUsed ) //http://unity3d.com/learn/tutorials/modules/intermediate/scripting/coding-practices
->>>>>>> 6ef08e8e51d9865940ab058b63abcf9004a02044
 		{
 		case Weapons.GRENADE_LAUNCHER:
 			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Grenade") );

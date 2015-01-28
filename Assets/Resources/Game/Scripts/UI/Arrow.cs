@@ -22,16 +22,9 @@ public class Arrow : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-<<<<<<< HEAD
 		Vector3 relPos = tracking.transform.position - canvasCam.transform.position;
 		Vector2 edge = new Vector2 (canvasCam.pixelWidth - margin, canvasCam.pixelHeight - margin);
 		if (Mathf.Abs (relPos.x / relPos.y) >= Mathf.Abs (edge.x / edge.y)) //Checks whether arrow should be on the right/left (true) or top/bottom (false)
-=======
-		//canvasCam.orthosize * -aspect
-		Vector3 trackPos = tracking.transform.position - canvasCam.transform.position;
-		if(trackPos.x < canvasCam.orthographicSize * (-canvasCam.rect.height/canvasCam.rect.width) - margin || trackPos.x > canvasCam.orthographicSize * canvasCam.aspect + margin || 
-		   trackPos.y < -canvasCam.orthographicSize - margin || trackPos.y > canvasCam.orthographicSize + margin)
->>>>>>> 6ef08e8e51d9865940ab058b63abcf9004a02044
 		{
 			float x_ = Mathf.Sign(relPos.x);
 			float y_ = Mathf.Sign(relPos.x) * relPos.y / relPos.x;
@@ -58,12 +51,5 @@ public class Arrow : MonoBehaviour
 		Vector3 dir = (tracking.transform.position - rTrans.position).normalized;
 		float angle = 270 + Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
 		rTrans.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-<<<<<<< HEAD
-=======
-
-		float max = Mathf.Max (Mathf.Abs (dir.x), Mathf.Abs (dir.y * canvasCam.aspect));
-
-		rTrans.localPosition = new Vector3 (dir.x / max, dir.y / max) * canvasCam.pixelHeight;
->>>>>>> 6ef08e8e51d9865940ab058b63abcf9004a02044
 	}
 }

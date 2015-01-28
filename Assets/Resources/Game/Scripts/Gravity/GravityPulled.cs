@@ -7,8 +7,7 @@ public class GravityPulled : MonoBehaviour
 	
 	GameObject[] attractors;
 	GameObject closest;
-	
-	float closestDist = float.MaxValue;
+
 
 	void Awake ()
 	{
@@ -21,17 +20,18 @@ public class GravityPulled : MonoBehaviour
 
 	void FixedUpdate () 
 	{
+		float biggestAtt = 0;
 		foreach(GameObject attractor in attractors)
 		{
 			float dist = (transform.position - attractor.transform.position).magnitude;
-			if( dist < closestDist)
+			float att = attractor.rigidbody2D.mass / Mathf.Pow(dist,2);
+			if( att > biggestAtt)
 			{
-				closestDist = dist;
+				biggestAtt = att;
 				closest = attractor;
 			}
 		}
 		closest.GetComponent<GravityAttractor>().Attract(gameObject, keepUpright);
-		closestDist = float.MaxValue;
 	}
 
 }

@@ -4,15 +4,14 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Throwable : MonoBehaviour , IWeaponThrowable
 {
-	public float throwForce;
-
 	[HideInInspector]
+	public float bonusThrowMomentum;
 	public Vector2 throwDir;
 	public bool activated = false;
 	
 	public virtual void Start () 
 	{
-		rigidbody2D.AddForce ( throwDir * throwForce );
+		rigidbody2D.velocity += ( throwDir * bonusThrowMomentum ) / rigidbody2D.mass;
 		Spawned ();
 	}
 	

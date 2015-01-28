@@ -8,10 +8,12 @@ public class PlayerController : Living
 
 	[HideInInspector()]
 	public int playerID = 0;
-	
+
+
 	public float acceleration;
 	public float maxSpeed;
 	public float jumpForce;
+	public float throwMomentum;  //Rename to throwForce, perhaps?
 	private string[] Axes = {"Flip", "Jump", "Fire", "Acc", "AccAxis"};
 
 	public Camera trackCam { get; set; }
@@ -98,7 +100,8 @@ public class PlayerController : Living
 		default:
 			if (fired != null)
 				fired.transform.parent = projectiles;
-			usedThrowable.rigidbody2D.velocity = rigidbody2D.velocity;
+			usedThrowable.rigidbody2D.velocity = rigidbody2D.velocity + throwMomentum * usedThrowable.throwDir / usedThrowable.rigidbody2D.mass;
+			rigidbody2D.velocity -= throwMomentum * usedThrowable.throwDir / rigidbody2D.mass;
 			usedThrowable.transform.position = transform.position + (facingRight ? transform.right : -transform.right);
 			break;
 		}

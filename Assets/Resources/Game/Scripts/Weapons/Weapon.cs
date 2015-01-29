@@ -9,7 +9,8 @@ using System.Collections;
  */
 public class Weapon : MonoBehaviour
 {
-	public virtual void Start () 
+//	public virtual delegate void Action;
+	public virtual void Start() 
 	{
 		Spawned ();
 	}

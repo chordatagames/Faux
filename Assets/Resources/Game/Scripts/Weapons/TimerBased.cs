@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TimerBased : Throwable, IWeaponThrowable
+public class TimerBased : Throwable
 {
 	public float timer; 
 

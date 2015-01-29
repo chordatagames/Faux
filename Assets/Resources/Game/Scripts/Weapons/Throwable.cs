@@ -2,7 +2,7 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Throwable : MonoBehaviour , IWeaponThrowable
+public class Throwable : Weapon , IWeaponThrowable
 {
 	public float throwForce;
 

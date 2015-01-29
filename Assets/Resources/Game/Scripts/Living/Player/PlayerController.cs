@@ -17,7 +17,7 @@ public class PlayerController : Living
 	public Camera trackCam { get; set; }
 	
 	public LayerMask groundMask;
-	public Transform groundChild; //Will posibly be removed later, TODO use -transform.up*distToGround
+	float distToGround;
 
 	public Weapons curWpn;
 	Throwable usedThrowable;
@@ -32,6 +32,7 @@ public class PlayerController : Living
 			Axes[i]+=playerID;
 		}
 		name += playerID;
+		distToGround = collider2D.bounds.extents.y;
 	}
 
 	protected override void Update () 
@@ -69,13 +70,13 @@ public class PlayerController : Living
 		{
 			rigidbody2D.drag = 0.01f;
 		}
-		grounded = Physics2D.Raycast(groundChild.position, -transform.up, 0.15f, groundMask);
+		grounded = Physics2D.Raycast(transform.position, -transform.up, distToGround+0.15f, groundMask);
 	}
 
 	void FireWeapon(Weapons wpnUsed)//TODO Move somewhere else
 	{
 		GameObject fired;
-		//USE DELGATES
+		//USE DELEGATES
 		switch ( wpnUsed ) //http://unity3d.com/learn/tutorials/modules/intermediate/scripting/coding-practices
 		{
 		case Weapons.GRENADE_LAUNCHER:

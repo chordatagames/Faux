@@ -8,7 +8,7 @@ public class PlayerCamera : MonoBehaviour
 	public GameObject tracking{ get; set; }
 	public Canvas UI_Canvas{ get; set; }
 	
-	public float size = 8;
+	public float size = 10;
 
 	void Awake ()
 	{

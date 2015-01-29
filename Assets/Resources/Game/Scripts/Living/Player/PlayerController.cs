@@ -8,10 +8,12 @@ public class PlayerController : Living
 
 	[HideInInspector()]
 	public int playerID = 0;
-	
+
+
 	public float acceleration;
 	public float maxSpeed;
 	public float jumpForce;
+	public float throwMomentum;  //Rename to throwForce, perhaps?
 	private string[] Axes = {"Flip", "Jump", "Fire", "Acc", "AccAxis"};
 
 	public Camera trackCam { get; set; }
@@ -60,8 +62,8 @@ public class PlayerController : Living
 			{
 //				if(transform.InverseTransformVector(rigidbody2D.velocity).x < maxSpeed)
 //				{
-					Debug.DrawRay(transform.position, (facingRight ? transform.right : -transform.right),Color.magenta);
-					rigidbody2D.AddForce( (facingRight ? transform.right : -transform.right) * acceleration );
+				Debug.DrawRay(transform.position, (facingRight ? transform.right : -transform.right),Color.magenta);
+				rigidbody2D.AddForce( (facingRight ? transform.right : -transform.right) * acceleration );
 //				}
 			}
 			rigidbody2D.drag = 0.075f;
@@ -75,8 +77,14 @@ public class PlayerController : Living
 
 	void FireWeapon(Weapons wpnUsed)//TODO Move somewhere else
 	{
+<<<<<<< HEAD
 		GameObject fired;
 		//USE DELEGATES
+=======
+		Transform projectiles = GameObject.Find("Projectiles").transform;
+		GameObject fired = null;
+		//USE DELGATES
+>>>>>>> origin/master
 		switch ( wpnUsed ) //http://unity3d.com/learn/tutorials/modules/intermediate/scripting/coding-practices
 		{
 		case Weapons.GRENADE_LAUNCHER:
@@ -96,7 +104,10 @@ public class PlayerController : Living
 			usedThrowable.throwDir = (facingRight ? transform.right : -transform.right);
 			goto default;
 		default:
-			usedThrowable.rigidbody2D.velocity = rigidbody2D.velocity;
+			if (fired != null)
+				fired.transform.parent = projectiles;
+			usedThrowable.rigidbody2D.velocity = rigidbody2D.velocity + throwMomentum * usedThrowable.throwDir / usedThrowable.rigidbody2D.mass;
+			rigidbody2D.velocity -= throwMomentum * usedThrowable.throwDir / rigidbody2D.mass;
 			usedThrowable.transform.position = transform.position + (facingRight ? transform.right : -transform.right);
 			break;
 		}

@@ -4,11 +4,16 @@ using System.Collections;
 public class GravityAttractor : MonoBehaviour
 {
 	
-	public static float gravityScale = 1;//global scalar for gravity;
-	
-	public void Attract ( GameObject pulled, bool keepUpright )
+	float gravityScale;//global scalar for gravity;
+
+	void Start ()
 	{
-		pulled.rigidbody2D.AddForce( AttractForce( pulled ) );
+		gravityScale = GameObject.Find("GameController").GetComponent<GameController>().gravityScale;
+	}
+
+	public void Attract(GameObject pulled, bool keepUpright )
+	{
+		pulled.rigidbody2D.AddForce(AttractForce( pulled ) );
 		if (keepUpright)
 		{
 			KeepUpright(pulled);
@@ -16,23 +21,23 @@ public class GravityAttractor : MonoBehaviour
 	}
 	
 	
-	public Vector2 AttractForce( GameObject pulled)
+	public Vector2 AttractForce(GameObject pulled)
 	{
-		Debug.DrawLine(pulled.transform.position, transform.position, Color.blue );
-		Debug.DrawRay(pulled.transform.position, -(pulled.transform.position - transform.position).normalized, Color.red );
+		Debug.DrawLine(pulled.transform.position, transform.position, Color.blue);
+		Debug.DrawRay(pulled.transform.position, -(pulled.transform.position - transform.position).normalized, Color.red);
 		
 		return 
-			( transform.position - pulled.transform.position).normalized 
+			(transform.position - pulled.transform.position).normalized 
 				* rigidbody2D.mass 
 				* pulled.rigidbody2D.mass 
 				* gravityScale;
 	}
 	
-	public void KeepUpright( GameObject pulled)
+	public void KeepUpright(GameObject pulled) //Keep all calls of this function to Update, not FixedUpdate, or chracter will appear wrongly rotated when moving
 	{
-		Vector3 dir = (transform.position - pulled.transform.position).normalized;
-		float angle = 90+Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg ;
-		pulled.transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward) ;
+		Vector2 dir = new Vector2(transform.position.x - pulled.transform.position.x, transform.position.y - pulled.transform.position.y).normalized;
+		float angle = Vector2.Angle(Vector2.right, dir)*Mathf.Deg2Rad*Mathf.Sign(dir.y) + Mathf.PI/2;
+		pulled.transform.rotation = new Quaternion(0, 0, 1 * Mathf.Sin (angle/2), Mathf.Cos (angle/2));
 	}
 
 }

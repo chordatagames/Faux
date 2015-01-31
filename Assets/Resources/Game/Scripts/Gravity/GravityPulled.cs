@@ -31,7 +31,10 @@ public class GravityPulled : MonoBehaviour
 				closest = attractor;
 			}
 		}
-		closest.GetComponent<GravityAttractor>().Attract(gameObject, keepUpright);
 	}
 
+	void Update ()
+	{
+		closest.GetComponent<GravityAttractor>().Attract(gameObject, keepUpright);
+	}
 }

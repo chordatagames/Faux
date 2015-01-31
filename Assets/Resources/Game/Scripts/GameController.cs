@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public class GameController : MonoBehaviour 
 {
-
+	public float gravityScale = 1;
 
 	void Start ()
 	{

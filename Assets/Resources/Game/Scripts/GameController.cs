@@ -11,19 +11,19 @@ public class GameController : MonoBehaviour
 		GameObject projectilesParent = new GameObject();
 		projectilesParent.name = "Projectiles";
 
-		PlayerController pc;
+		Player player;
 		PlayerCamera pCam;
 		Rect[] screens = GetSplitScreens();
 		//splitScreen ();
 
 		for (int i=0;i < World.players.Length; i++)
 		{
-			GameObject player = World.players[i];
-			pc = player.GetComponent<PlayerController>();
-			pc.trackCam = new GameObject ("Player_" + pc.playerID + "_cam", typeof(Camera), typeof(PlayerCamera)).camera;
-			pc.trackCam.rect = screens[i];
-			pCam = pc.trackCam.GetComponent<PlayerCamera>();
-			pCam.tracking = pc.gameObject;
+			GameObject p = World.players[i];
+			player = p.GetComponent<Player>();
+			player.trackCam = new GameObject ("Player_" + player.playerID + "_cam", typeof(Camera), typeof(PlayerCamera)).camera;
+			player.trackCam.rect = screens[i];
+			pCam = player.trackCam.GetComponent<PlayerCamera>();
+			pCam.tracking = player.gameObject;
 		}
 	}
 

@@ -9,9 +9,12 @@ using System.Collections;
  */
 public class Weapon : MonoBehaviour
 {
+	public GameObject usedBy { get; set; } //Can possibly be changed to type of 'Player'
+
 //	public virtual delegate void Action;
 	public virtual void Start() 
 	{
+		rigidbody2D.velocity = usedBy.rigidbody2D.velocity;
 		Spawned ();
 	}
 	

@@ -3,10 +3,10 @@ using System.Collections;
 
 public class PlayerAnimator : MonoBehaviour 
 {
+	public Player player { get; set; }
 
 	Animator anim;
 	Transform parent;
-	PlayerController PC;
 	
 	public float maxIdleTime = 40.0f, idleTime;
 
@@ -14,7 +14,6 @@ public class PlayerAnimator : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
 		parent = transform.parent;
-		PC = parent.GetComponent<PlayerController>();
 	
 		//Temporary placement of code, TODO when starting game, players may choose color.
 		GetComponent<SpriteRenderer>().material.SetColor("_Color", new Color(Random.value, Random.value, Random.value));
@@ -23,11 +22,11 @@ public class PlayerAnimator : MonoBehaviour
 	void Update () 
 	{
 
-		transform.localRotation = Quaternion.Euler( new Vector3(0,(PC.facingRight ? 0 : 180), 0));
+		transform.localRotation = Quaternion.Euler( new Vector3(0,(player.facingRight ? 0 : 180), 0));
 
 		anim.SetFloat("horizontalVelocity", transform.InverseTransformDirection(parent.rigidbody2D.velocity).x);
 		anim.SetFloat("verticalVelocity", transform.InverseTransformDirection(parent.rigidbody2D.velocity).y);
-		anim.SetBool("grounded", PC.grounded);
+		anim.SetBool("grounded", player.grounded);
 
 		if(idleTime < 0)
 		{

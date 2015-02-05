@@ -5,13 +5,17 @@ using System.Collections;
 public class Throwable : Weapon , IWeaponThrowable
 {
 	[HideInInspector]
-	public float bonusThrowMomentum;
+	public float throwMomentum;
 	public Vector2 throwDir;
 	public bool activated = false;
 	
 	public virtual void Start () 
 	{
-		rigidbody2D.velocity += ( throwDir * bonusThrowMomentum ) / rigidbody2D.mass;
+		base.Start();
+		throwDir = (usedBy.transform.position - transform.position) / (usedBy.transform.position - transform.position).magnitude;
+		usedBy.rigidbody2D.velocity -= throwMomentum * throwDir / rigidbody2D.mass;//"Recoil"
+		rigidbody2D.velocity += throwDir * throwMomentum / rigidbody2D.mass;
+
 		Spawned ();
 	}
 	

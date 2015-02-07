@@ -7,7 +7,8 @@ using System.Collections;
  * A set of types of weapons can be specified with interfaces, 
  * making it possible to implement multiple weapon functionalities.
  */
-public class Weapon : MonoBehaviour
+[RequireComponent(typeof(GravityPulled))]
+public abstract class Weapon : MonoBehaviour
 {
 	public GameObject usedBy { get; set; } //Can possibly be changed to type of 'Player'
 

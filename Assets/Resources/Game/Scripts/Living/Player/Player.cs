@@ -4,7 +4,7 @@ using System.Collections;
 public class Player : Living
 {
 	public static int playerCount = 0;
-	public int playerID = 0;
+	public int playerID { get; set; }
 	public float acceleration;
 	public float maxSpeed_TODO;//TODO
 	public float jumpForce;

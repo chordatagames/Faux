@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MassChanger : Throwable , IWeaponThrowable
+public class MassChanger : Shooting
 {
 	public float radius, change;
 	public LayerMask affecting;
@@ -10,23 +10,19 @@ public class MassChanger : Throwable , IWeaponThrowable
 
 	public override void Spawned ()
 	{
-		base.Spawned ();
 		Activate ();
-
 	}
 	public override void Wait ()
 	{
-		base.Wait ();
-
+		base.Wait();
 	}
 	public override void Activate ()
 	{
-		base.Activate ();
+		base.Activate();
 	}
 	public override void Active ()
 	{
-		base.Active ();
-
+		Active();
 		Collider2D[] inField = Physics2D.OverlapCircleAll(transform.position, radius, affecting);
 		foreach (Collider2D c in inField)
 		{
@@ -35,7 +31,5 @@ public class MassChanger : Throwable , IWeaponThrowable
 				c.rigidbody2D.mass *= change;
 			}
 		}
-	
-
 	}
 }

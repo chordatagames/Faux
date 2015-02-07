@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Living : MonoBehaviour, ILiving 
+public abstract class Living : MonoBehaviour, ILiving 
 {
 	public float health = 100;
 	public bool dead 		{ get; set; }

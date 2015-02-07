@@ -1,13 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class TimerBased : Throwable
+public class TimerBased : Shooting
 {
 	public float timer; 
 
 	public override void Wait ()
 	{
-		base.Wait ();
 		if (timer < 6 && ((int)timer) % 2 == 0) 
 		{
 			renderer.material.color = Color.red;
@@ -26,7 +25,7 @@ public class TimerBased : Throwable
 
 	public override void Activate ()
 	{
-		base.Activate ();
+		base.Activate();
 		Destroy (this.gameObject);
 	}
 }

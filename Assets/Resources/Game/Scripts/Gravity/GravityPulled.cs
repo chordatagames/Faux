@@ -11,11 +11,9 @@ public class GravityPulled : MonoBehaviour
 
 	void Awake ()
 	{
+
 		rigidbody2D.fixedAngle = false;
-	}
-	void Start () 
-	{
-		attractors = GameObject.FindGameObjectsWithTag("GravityAttractor");
+		attractors = World.GravityAttractors
 	}
 
 	void FixedUpdate () 

@@ -2,25 +2,24 @@
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Throwable : Weapon , IWeaponThrowable
+public abstract class Shooting : Weapon
 {
 	[HideInInspector]
 	public float throwMomentum;
 	public Vector2 throwDir;
 	public bool activated = false;
 	
-	public virtual void Start () 
+	public override void Start () 
 	{
 		base.Start();
 		throwDir = (usedBy.transform.position - transform.position) / (usedBy.transform.position - transform.position).magnitude;
 		usedBy.rigidbody2D.velocity -= throwMomentum * throwDir / rigidbody2D.mass;//"Recoil"
 		rigidbody2D.velocity += throwDir * throwMomentum / rigidbody2D.mass;
-
-		Spawned ();
 	}
 	
-	public virtual void Spawned ()
+	public override void Spawned ()
 	{
+		base.Spawned();
 		StartCoroutine ( WaitingRoutine( 0.5f ) );
 	}
 

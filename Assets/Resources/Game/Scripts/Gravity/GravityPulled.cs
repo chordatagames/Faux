@@ -13,7 +13,7 @@ public class GravityPulled : MonoBehaviour
 	{
 
 		rigidbody2D.fixedAngle = false;
-		attractors = World.GravityAttractors
+		attractors = World.GravityAttractors;
 	}
 
 	void FixedUpdate () 

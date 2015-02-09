@@ -10,7 +10,7 @@ public class PlayerAnimator : MonoBehaviour
 	
 	public float maxIdleTime = 40.0f, idleTime;
 
-	void Awake () 
+	void Start () 
 	{
 		anim = GetComponent<Animator>();
 		parent = transform.parent;

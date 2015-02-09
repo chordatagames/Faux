@@ -9,7 +9,7 @@ public class GravityPulled : MonoBehaviour
 	GameObject closest;
 
 
-	void Awake ()
+	void Start ()
 	{
 
 		rigidbody2D.fixedAngle = false;

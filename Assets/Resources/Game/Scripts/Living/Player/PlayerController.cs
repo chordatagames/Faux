@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 	public LayerMask groundMask;
 	float distToGround;
 	
-	void Awake ()
+	void Start ()
 	{
 		for (int i=0; i<Axes.Length; i++)
 		{

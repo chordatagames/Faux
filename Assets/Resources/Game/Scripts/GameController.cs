@@ -51,3 +51,5 @@ public class GameController : MonoBehaviour
 		return new Rect( x/colsInRow, y/rows, 1f/colsInRow, 1f/rows);
 	}
 }
+
+

@@ -29,3 +29,24 @@ public class Player : Living
 		pw.player = this;
 	}
 }
+
+public struct Team
+{
+	string 		name;
+	Color 		teamColor;
+	bool 		friendlyFire;
+	Player[] 	players;
+
+	public Team(string name, Color teamCol)
+	{
+		Team(name, teamCol, false);
+	}
+	public Team(string name, Color teamCol, bool ff)
+	{
+		this.name = name;
+		teamColor = teamCol;
+		friendlyFire = ff;
+	}
+
+
+}

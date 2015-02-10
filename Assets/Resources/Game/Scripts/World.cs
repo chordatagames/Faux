@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public static class World
 {
 	public static GameObject[] players{ get{ return  GameObject.FindGameObjectsWithTag("Player"); } }
+	public static GameObject[] projectiles{ get{ return  GameObject.FindGameObjectsWithTag("Projectile"); } }
 	public static GameObject[] GravityAttractors{ get{ return GameObject.FindGameObjectsWithTag("GravityAttractor"); } }
 
 	public static GameObject[] OtherPlayers( params GameObject[] playerArgs ) 

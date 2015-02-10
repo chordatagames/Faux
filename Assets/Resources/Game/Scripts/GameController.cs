@@ -5,17 +5,30 @@ using System.Collections.Generic;
 public class GameController : MonoBehaviour 
 {
 	public float gravityScale = 1;
+	public Team[] teams = new Team[GameOptions.teams];
 
 	void Start ()
 	{
 		GameObject projectilesParent = new GameObject();
 		projectilesParent.name = "Projectiles";
 
+		SetupPlayers();
+
+		for (int i=0; i < GameOptions.teams; i++)//Team setup -Planning TODO
+		{
+			teams[i] = new Team();
+		}
+
+	}
+
+	//-------------------------------------------------------------------
+
+
+	void SetupPlayers()
+	{
+		Rect[] screens = GetSplitScreens();
 		Player player;
 		PlayerCamera pCam;
-		Rect[] screens = GetSplitScreens();
-		//splitScreen ();
-
 		for (int i=0;i < World.players.Length; i++)
 		{
 			GameObject p = World.players[i];
@@ -52,4 +65,11 @@ public class GameController : MonoBehaviour
 	}
 }
 
-
+public static class GameOptions
+{
+	public static int flags			{ get; set; }
+	public static int capturePoints	{ get; set; }
+	public static int teams			{ get; set; }
+	public static int timed			{ get; set; }
+	public static int asteriods		{ get; set; }
+}

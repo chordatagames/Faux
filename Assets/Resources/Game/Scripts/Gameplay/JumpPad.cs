@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class JumpPad : MonoBehaviour
+public class JumpPad : GameComponent
 {
 	public LayerMask affectingLayers;
 	public float pushForce = 1200;

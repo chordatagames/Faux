@@ -8,7 +8,7 @@ public abstract class Shooting : Weapon
 	public float throwMomentum;
 	public Vector2 throwDir;
 	public bool activated = false;
-	
+
 	public override void Start () 
 	{
 		base.Start();

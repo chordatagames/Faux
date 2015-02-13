@@ -4,6 +4,12 @@ using System.Collections.Generic;
 
 public static class World
 {
+	public static List<Team> 				teams 			= new List<Team> ();
+	public static List<Player>				listPlayers 	= new List<Player> ();
+	public static List<Weapon>				listWeapon 		= new List<Weapon> ();
+	public static List<GravityAttractor>	listAttractors 	= new List<GravityAttractor> ();
+
+
 	public static GameObject[] players{ get{ return  GameObject.FindGameObjectsWithTag("Player"); } }
 	public static GameObject[] projectiles{ get{ return  GameObject.FindGameObjectsWithTag("Projectile"); } }
 	public static GameObject[] GravityAttractors{ get{ return GameObject.FindGameObjectsWithTag("GravityAttractor"); } }
@@ -36,4 +42,11 @@ public static class World
 		}
 		return others.ToArray ();
 	}
+}
+
+public static class WorldOptions
+{
+	public static float 	GravityScale;
+	public static Vector2 	WorldSize;
+	public static int 		Planets;
 }

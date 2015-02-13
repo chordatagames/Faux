@@ -4,17 +4,18 @@ using System.Collections;
 public class GameComponent : MonoBehaviour
 {
 	protected bool _canPickup = false;
-	protected bool _capturing = false;
 }
 
-public interface PickupComponent
+public interface IPickupComponent
 {
-	bool canPickup { get; set; }
+	bool CanPickup { get; set; }
 	void PickUp( Player player );
 }
-public interface CaptureComponent
+public interface ICaptureComponent
 {
-	bool capturing { get; set; }
+	float	CaptureTime 	{ get; set; } //n seconds before capture completed
+	bool 	Capturing 		{ get; set; }
+
 	void InitializeCapture( Team player );
 	void Capture( Team team );
 }

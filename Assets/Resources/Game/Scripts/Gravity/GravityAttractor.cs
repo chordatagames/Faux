@@ -3,13 +3,6 @@ using System.Collections;
 [RequireComponent(typeof(Rigidbody2D))]
 public class GravityAttractor : MonoBehaviour
 {
-	
-	float gravityScale;//global scalar for gravity;
-
-	void Start ()
-	{
-		gravityScale = GameObject.Find("GameController").GetComponent<GameController>().gravityScale;
-	}
 
 	public void Attract(GameObject pulled, bool keepUpright )
 	{
@@ -28,9 +21,9 @@ public class GravityAttractor : MonoBehaviour
 		
 		return 
 			(transform.position - pulled.transform.position).normalized 
-				* rigidbody2D.mass 
-				* pulled.rigidbody2D.mass 
-				* gravityScale;
+				* rigidbody2D.mass
+				* pulled.rigidbody2D.mass
+				* WorldOptions.GravityScale;
 	}
 	
 	public void KeepUpright(GameObject pulled) //Keep all calls of this function to Update, not FixedUpdate, or chracter will appear wrongly rotated when moving

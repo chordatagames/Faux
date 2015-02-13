@@ -2,28 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class GameController : MonoBehaviour 
+public class GameController : MonoBehaviour //TODO make static
 {
 	public float gravityScale = 1;
-	public Team[] teams = new Team[GameOptions.teams];
+	public Team[] teams = new Team[GameOptions.Teams];
 
+	//===TEMPVALUES=============
+	public int flags		= 0;
+	public int capturePoints= 0;
+	public int teamCount	= 0;
+	public int timer		= 0;
+	public int asteriods	= 0;
+	//===TEMPVALUES=============
+	
 	void Start ()
 	{
 		GameObject projectilesParent = new GameObject();
 		projectilesParent.name = "Projectiles";
 
 		SetupPlayers();
+		WorldOptions.GravityScale = gravityScale;
 
-		for (int i=0; i < GameOptions.teams; i++)//Team setup -Planning TODO
-		{
-			teams[i] = new Team();
-		}
+		GameOptions.Asteriods 		= asteriods;
+		GameOptions.CapturePoints 	= capturePoints;
+		GameOptions.Flags			= flags;
+		GameOptions.Teams			= teamCount;
+		GameOptions.Timer 			= timer;
 
 	}
 
 	//-------------------------------------------------------------------
-
-
+	
 	void SetupPlayers()
 	{
 		Rect[] screens = GetSplitScreens();
@@ -67,9 +76,9 @@ public class GameController : MonoBehaviour
 
 public static class GameOptions
 {
-	public static int flags			{ get; set; }
-	public static int capturePoints	{ get; set; }
-	public static int teams			{ get; set; }
-	public static int timed			{ get; set; }
-	public static int asteriods		{ get; set; }
+	public static int Flags			{ get; set; }
+	public static int CapturePoints	{ get; set; }
+	public static int Teams			{ get; set; } // - if zero, teams = playercount, teamname = playername;
+	public static int Timer			{ get; set; } // - timed game, lasting for 'timer' minutes;
+	public static int Asteriods		{ get; set; }
 }

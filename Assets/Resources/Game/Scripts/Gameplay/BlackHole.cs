@@ -5,21 +5,24 @@ public class BlackHole : MonoBehaviour
 {
 	public GameObject whiteHole;
 
-	void Start ()
-	{
-		rigidbody2D.AddTorque (5.0f);
-	}
-
 	void OnTriggerEnter2D (Collider2D col)
 	{
 		col.transform.position = whiteHole.transform.position;
-		RotateTransform (col.transform);
+		RotateVelocity (col.transform);
 	}
 
-	void RotateTransform (Transform a)
+	void RotateVelocity (Transform a)
 	{
 		Vector2 _velocity;
 
+		float deltaAngle = whiteHole.transform.eulerAngles.z - transform.eulerAngles.z;
+		Debug.Log ("Angle: " + deltaAngle);
+
+		float _angle = (Mathf.Abs (Vector2.Angle (Vector2.right, a.rigidbody2D.velocity)) * Mathf.Sign (a.rigidbody2D.velocity.y) + deltaAngle) * Mathf.Deg2Rad;
+
+		_velocity.x = Mathf.Cos (_angle);
+		_velocity.y = Mathf.Sin (_angle);
+		_velocity *= a.rigidbody2D.velocity.magnitude;
 
 		a.rigidbody2D.velocity = _velocity;
 	}

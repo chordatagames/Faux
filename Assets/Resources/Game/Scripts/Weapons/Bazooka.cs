@@ -24,12 +24,13 @@ public class Bazooka : TimerBased
 		{
 			if (c.rigidbody2D != null)
 			{
-				c.rigidbody2D.AddForce((c.transform.position - transform.position) * explotionForce);
+				c.rigidbody2D.AddForce((c.transform.position - transform.position).normalized * explotionForce);
 				if( c.GetComponent<Living>() != null )
 				{
-					c.GetComponent<Living>().Damage(((c.transform.position - transform.position).magnitude * (c.transform.position - transform.position).magnitude + 1) * explotionForce);
+					c.GetComponent<Living>().Damage(explotionForce / ((c.transform.position - transform.position).magnitude * (c.transform.position - transform.position).magnitude + 1));
 				}
 			}
 		}
+		Destroy (gameObject);
 	}
 }

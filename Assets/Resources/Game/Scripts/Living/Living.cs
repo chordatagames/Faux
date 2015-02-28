@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class Living : MonoBehaviour, ILiving 
+public abstract class Living : GameComponent, ILiving 
 {
 	public float health = 100;
+
 	public bool dead 		{ get; set; }
 	public bool grounded 	{ get; set; }
 	public bool facingRight { get; set; }

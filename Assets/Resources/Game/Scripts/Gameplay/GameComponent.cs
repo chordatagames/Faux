@@ -1,21 +1,27 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameComponent : MonoBehaviour
-{
-	protected bool _canPickup = false;
-}
+//TODO, why the fuck do we use Interfaces with properties anyways!???!?!?
 
+public abstract class GameComponent : MonoBehaviour
+{
+	public bool onlyOwnerUse = true; //Invalid for some?
+	public Team OwnedBy { get; set; }
+}
 public interface IPickupComponent
 {
-	bool CanPickup { get; set; }
+	bool CanPickUp 	{ get; set; }
+	bool PickedUp 	{ get; } // HeldBy != null
+	Player HeldBy 	{ get; set; }
 	void PickUp( Player player );
 }
 public interface ICaptureComponent
 {
 	float	CaptureTime 	{ get; set; } //n seconds before capture completed
-	bool 	Capturing 		{ get; set; }
-
-	void InitializeCapture( Team player );
-	void Capture( Team team );
+	bool	Capturable		{ get; set; }
+	bool 	Capturing 		{ get; }
+	
+	void StartCapture(Team capTeam);
+	void StopCapture();
+	void CompleteCapture();
 }

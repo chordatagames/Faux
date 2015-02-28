@@ -20,13 +20,13 @@ public class PlayerWeapon : MonoBehaviour //Weapon handler for players - may ned
 		switch ( curWpn ) //http://unity3d.com/learn/tutorials/modules/intermediate/scripting/coding-practices
 		{
 		case Weapons.GRENADE_LAUNCHER:
-			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Grenade") );
+			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Weapons/Grenade") );
 			goto default;
 		case Weapons.RPG:
-			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Bazooka") );
+			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Weapons/Bazooka") );
 			goto default;
 		case Weapons.MASS_CHANGER:
-			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/MassChanger") );
+			fired = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/Weapons/MassChanger") );
 			goto default;
 		default:
 			break;
@@ -35,7 +35,7 @@ public class PlayerWeapon : MonoBehaviour //Weapon handler for players - may ned
 		{
 			fired.transform.parent = projectiles;
 			usedWeapon = fired.GetComponent<Weapon>();// GENERIC! The "Grenade" component is inherited from Weapon.
-			usedWeapon.usedBy = gameObject;
+			usedWeapon.usedBy = player;
 			usedWeapon.transform.position = transform.position + (player.facingRight ? transform.right : -transform.right);
 		}
 	}

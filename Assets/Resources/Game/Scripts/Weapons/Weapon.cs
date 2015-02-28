@@ -8,13 +8,14 @@ using System.Collections;
  * making it possible to implement multiple weapon functionalities.
  */
 [RequireComponent(typeof(GravityPulled))]
-public abstract class Weapon : MonoBehaviour
+public abstract class Weapon : GameComponent
 {
-	public GameObject usedBy { get; set; } //Can possibly be changed to type of 'Player'
+	public Player usedBy { get; set; } //Can possibly be changed to type of 'Player'
 
 //	public virtual delegate void Action;
 	public virtual void Start() 
 	{
+		OwnedBy = Team.GetTeam (usedBy);
 		rigidbody2D.velocity = usedBy.rigidbody2D.velocity;
 		Spawned ();
 	}

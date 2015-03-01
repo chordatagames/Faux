@@ -17,14 +17,14 @@ public abstract class Living : GameComponent, ILiving
 		}
 	}
 
-	// Use this for initialization
+	// Use this for initialization <-- lolwut?
 	public virtual void Kill () 
 	{
 		dead = true;
 		Destroy (gameObject);
 	}
 	
-	// Update is called once per frame
+	// Update is called once per frame <-- thx, but Update() is up there
 	public virtual void Damage (float dmgTaken)
 	{
 		health -= dmgTaken;

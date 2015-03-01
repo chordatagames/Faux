@@ -4,8 +4,7 @@ using System.Collections.Generic;
 
 public class Team : ScriptableObject
 {
-	public string 		name;
-	public Color 		teamColor;
+	public Color 		teamColor = Color.white;
 	public bool 		friendlyFire;
 	public Planet 		SpawnPoint;
 	public List<Player>	players;

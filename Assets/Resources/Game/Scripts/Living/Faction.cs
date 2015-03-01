@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
+
+//IF RELATIONS BETWEEN TEAMS SHOULD BE USED ANYTIME, WE COULD USE A 'FACTION'-SYSTEM
 public class Faction : ScriptableObject
 {
 	public string teamName = "New Team";

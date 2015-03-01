@@ -21,7 +21,7 @@ public interface ICaptureComponent
 	bool	Capturable		{ get; set; }
 	bool 	Capturing 		{ get; }
 	
-	void StartCapture(Team capTeam);
+	void StartCapture();
 	void StopCapture();
 	void CompleteCapture();
 }

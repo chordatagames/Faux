@@ -7,15 +7,17 @@ public class Arrow : MonoBehaviour
 	Rect bounds;
 	RectTransform rTrans;
 	Camera canvasCam;
-	public GameObject tracking { get; set; }
+	public GameComponent tracking { get; set; }
 	public float margin;
 
 	Vector2 relPos;
 	// Use this for initialization
 	void Start () 
 	{
+
 		margin = 35;
 		rTrans = GetComponent<RectTransform> ();
+		GetComponent<Image> ().color = tracking.OwnedBy.teamColor;
 		canvasCam = GetComponentInParent<Canvas> ().worldCamera;
 	}
 

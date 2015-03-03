@@ -13,8 +13,8 @@ public abstract class Shooting : Weapon
 	{
 		base.Start();
 		throwDir = (usedBy.transform.position - transform.position) / (usedBy.transform.position - transform.position).magnitude;
-		usedBy.rigidbody2D.velocity -= throwMomentum * throwDir / rigidbody2D.mass;//"Recoil"
-		rigidbody2D.velocity += throwDir * throwMomentum / rigidbody2D.mass;
+		usedBy.GetComponent<Rigidbody2D>().velocity -= throwMomentum * throwDir / GetComponent<Rigidbody2D>().mass;//"Recoil"
+		GetComponent<Rigidbody2D>().velocity += throwDir * throwMomentum / GetComponent<Rigidbody2D>().mass;
 	}
 	
 	public override void Spawned ()

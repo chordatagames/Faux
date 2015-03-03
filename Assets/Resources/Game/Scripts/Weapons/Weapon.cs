@@ -16,7 +16,7 @@ public abstract class Weapon : GameComponent
 	public virtual void Start() 
 	{
 		OwnedBy = Team.GetTeam (usedBy);
-		rigidbody2D.velocity = usedBy.rigidbody2D.velocity;
+		GetComponent<Rigidbody2D>().velocity = usedBy.GetComponent<Rigidbody2D>().velocity;
 		Spawned ();
 	}
 	

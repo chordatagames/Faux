@@ -24,8 +24,8 @@ public class PlayerAnimator : MonoBehaviour
 
 		transform.localRotation = Quaternion.Euler( new Vector3(0,(player.facingRight ? 0 : 180), 0));
 
-		anim.SetFloat("horizontalVelocity", transform.InverseTransformDirection(parent.rigidbody2D.velocity).x);
-		anim.SetFloat("verticalVelocity", transform.InverseTransformDirection(parent.rigidbody2D.velocity).y);
+		anim.SetFloat("horizontalVelocity", transform.InverseTransformDirection(parent.GetComponent<Rigidbody2D>().velocity).x);
+		anim.SetFloat("verticalVelocity", transform.InverseTransformDirection(parent.GetComponent<Rigidbody2D>().velocity).y);
 		anim.SetBool("grounded", player.grounded);
 
 		if(idleTime < 0)

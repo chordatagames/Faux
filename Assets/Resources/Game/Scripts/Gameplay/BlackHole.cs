@@ -18,12 +18,12 @@ public class BlackHole : MonoBehaviour
 		float deltaAngle = whiteHole.transform.eulerAngles.z - transform.eulerAngles.z;
 		Debug.Log ("Angle: " + deltaAngle);
 
-		float _angle = (Mathf.Abs (Vector2.Angle (Vector2.right, a.rigidbody2D.velocity)) * Mathf.Sign (a.rigidbody2D.velocity.y) + deltaAngle) * Mathf.Deg2Rad;
+		float _angle = (Mathf.Abs (Vector2.Angle (Vector2.right, a.GetComponent<Rigidbody2D>().velocity)) * Mathf.Sign (a.GetComponent<Rigidbody2D>().velocity.y) + deltaAngle) * Mathf.Deg2Rad;
 
 		_velocity.x = Mathf.Cos (_angle);
 		_velocity.y = Mathf.Sin (_angle);
-		_velocity *= a.rigidbody2D.velocity.magnitude;
+		_velocity *= a.GetComponent<Rigidbody2D>().velocity.magnitude;
 
-		a.rigidbody2D.velocity = _velocity;
+		a.GetComponent<Rigidbody2D>().velocity = _velocity;
 	}
 }

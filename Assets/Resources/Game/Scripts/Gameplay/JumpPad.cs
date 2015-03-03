@@ -13,7 +13,7 @@ public class JumpPad : GameComponent
 			if (((1<<col.gameObject.layer) & affectingLayers) != 0)
 			{
 				// Will push all objects just as hard regardless of mass
-				col.rigidbody2D.AddForce(pushForce * col.rigidbody2D.mass * transform.up); 
+				col.GetComponent<Rigidbody2D>().AddForce(pushForce * col.GetComponent<Rigidbody2D>().mass * transform.up); 
 			}
 		}
 	}

@@ -12,17 +12,17 @@ public class PlayerCamera : MonoBehaviour
 
 	void Awake ()
 	{
-		if(!camera.orthographic)
+		if(!GetComponent<Camera>().orthographic)
 		{
-			camera.orthographic = true;
+			GetComponent<Camera>().orthographic = true;
 		}
 	}
 
 	void Start () 
 	{
-		camera.orthographicSize = size;
+		GetComponent<Camera>().orthographicSize = size;
 		UI_Canvas = new GameObject(name + "_canvas", typeof(Canvas), typeof(CanvasScaler), typeof(CanvasRenderer), typeof(UIPlayerTracker)).GetComponent<Canvas>();
-		UI_Canvas.worldCamera = camera;
+		UI_Canvas.worldCamera = GetComponent<Camera>();
 		UI_Canvas.GetComponent<UIPlayerTracker> ().canvasOwner = tracking;
 		UI_Canvas.renderMode = RenderMode.ScreenSpaceCamera;
 		UI_Canvas.planeDistance = 1;

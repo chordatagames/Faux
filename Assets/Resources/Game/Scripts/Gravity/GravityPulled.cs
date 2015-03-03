@@ -12,7 +12,7 @@ public class GravityPulled : MonoBehaviour
 	void Start ()
 	{
 
-		rigidbody2D.fixedAngle = false;
+		GetComponent<Rigidbody2D>().fixedAngle = false;
 		attractors = World.GravityAttractors;
 	}
 
@@ -22,7 +22,7 @@ public class GravityPulled : MonoBehaviour
 		foreach(GameObject attractor in attractors)
 		{
 			float dist = (transform.position - attractor.transform.position).magnitude;
-			float att = attractor.rigidbody2D.mass / Mathf.Pow(dist,2);
+			float att = attractor.GetComponent<Rigidbody2D>().mass / Mathf.Pow(dist,2);
 			if( att > biggestAtt)
 			{
 				biggestAtt = att;

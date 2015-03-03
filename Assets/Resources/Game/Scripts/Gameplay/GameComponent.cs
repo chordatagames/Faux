@@ -21,7 +21,12 @@ public interface ICaptureComponent
 	bool	Capturable		{ get; set; }
 	bool 	Capturing 		{ get; }
 	
-	void StartCapture();
+	void StartCapture( Team capturerTeam);
 	void StopCapture();
 	void CompleteCapture();
+}
+public interface IAllignable
+{
+	float allignRadius {get; set;}
+	void AllignTo(Collider2D body);
 }

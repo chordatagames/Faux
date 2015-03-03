@@ -9,14 +9,11 @@ public class CaptureZone : GameComponent, ICaptureComponent
 	private List<Player> 		capturersInZone = new List<Player> ();
 
 	private Team capturingTeam = null;
-
-
+	
 	public GameComponent 	CaptureObject; //Most cases, this will be a planet
 
 	public int 		startTime 	= 60; //Starting value of Capture Time - 60 = One Min
 	public float 	resetSpeed 	= 2; // ResetTick - 2 = 30 sec for reset, 3 = 20 sec;
-
-	public bool	paused 				= false;
 
 	protected float	_captureTime 	= 0;
 	protected bool 	_capturable		= true;
@@ -47,13 +44,11 @@ public class CaptureZone : GameComponent, ICaptureComponent
 
 			if (capturingTeam == null && !(player.OwnedBy == OwnedBy))
 			{
-				capturingTeam = player.OwnedBy;
-				Debug.Log ("uh");
+				StartCapture( player.OwnedBy );
 			}
 
 			if ( player.OwnedBy == capturingTeam ) // the player is a capturer
 			{
-				Debug.Log (player + " Added!");
 				capturersInZone.Add ( player );
 			}
 		}
@@ -125,32 +120,22 @@ public class CaptureZone : GameComponent, ICaptureComponent
 				}
 			}
 		}
-		else 
-		{
-			if ( PlayersInZone.Length > 0 ) // Player already owns it.
-			{
-				StartCapture();
-			}
-		}
 	}
 
-	public void StartCapture ( )
+	public void StartCapture ( Team capturerTeam )
 	{
-		Debug.Log ("Initializing Capture!");
-		CaptureTime -= Time.deltaTime*CapturersInZone.Length;
+		capturingTeam = capturerTeam;
 	}
 
 
 	public void StopCapture ()
 	{
-		Debug.Log ("Capture Stopped!");
 		CaptureTime = startTime;
 		capturingTeam = null;
 	}
 
 	public void CompleteCapture()
 	{
-		Debug.Log ( CaptureObject.name + " Captured!");
 		OwnedBy = capturingTeam;
 		StopCapture ();
 	}

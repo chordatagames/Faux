@@ -9,12 +9,12 @@ public class Planet : GameComponent
 	void Start()
 	{
 		if (gasPlanet)
-		{ collider2D.isTrigger = true; }
+		{ GetComponent<Collider2D>().isTrigger = true; }
 	}
 
 	void OnTriggerStay2D(Collider2D col)
 	{
-		if ( (col.transform.position-transform.position).magnitude+1 < ( (CircleCollider2D)collider2D ).radius )
+		if ( (col.transform.position-transform.position).magnitude+1 < ( (CircleCollider2D)GetComponent<Collider2D>() ).radius )
 		{ Destroy( col.gameObject ); } //A bit harsh perhaps?
 	}
 }

@@ -9,7 +9,7 @@ public class Grenade : TimerBased
 	public override void Spawned ()
 	{
 		base.Spawned();
-		renderer.material.color = Color.yellow;
+		GetComponent<Renderer>().material.color = Color.yellow;
 	}
 	// Called every frame this object is alive.
 	public override void Wait ()
@@ -23,9 +23,9 @@ public class Grenade : TimerBased
 		base.Activate ();
 		foreach (Collider2D c in Physics2D.OverlapCircleAll (transform.position, explotionSize))
 		{
-			if (c.rigidbody2D != null)
+			if (c.GetComponent<Rigidbody2D>() != null)
 			{
-				c.rigidbody2D.AddForce((c.transform.position-this.transform.position) * explotionForce);
+				c.GetComponent<Rigidbody2D>().AddForce((c.transform.position-this.transform.position) * explotionForce);
 				if(c.GetComponent<Living>() != null)
 				{
 					c.GetComponent<Living>().Damage(((c.transform.position - transform.position).magnitude * (c.transform.position - transform.position).magnitude + 1) * explotionForce);

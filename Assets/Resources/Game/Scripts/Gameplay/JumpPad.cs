@@ -1,10 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class JumpPad : GameComponent
+public class JumpPad : GameComponent, IAllignable
 {
+	private float _allignRadius = 5;
+
 	public LayerMask affectingLayers;
 	public float pushForce = 1200;
+	public float allignRadius { get { return _allignRadius; } set { _allignRadius = value; } }
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
@@ -17,4 +20,28 @@ public class JumpPad : GameComponent
 			}
 		}
 	}
+
+	void OnDrawGizmosSelected()
+	{
+		Gizmos.color = FauxEditorGizmoSettings.allignGizmoColor;
+		Gizmos.DrawSphere(transform.position, 5);
+	}
+
+	public void AllignTo(Collider2D col)
+	{
+		if (col.GetType() == typeof(CircleCollider2D))
+		{
+			Vector2 fromCenterDir = (transform.position - col.transform.position).normalized;
+			transform.position = (Vector2)col.transform.position + fromCenterDir * col.transform.localScale.x/2;
+
+			float angle = Vector2.Angle(Vector2.right, -fromCenterDir) * Mathf.Deg2Rad*Mathf.Sign(-fromCenterDir.y) + Mathf.PI/2;
+			transform.rotation = new Quaternion( 0, 0, 1 * Mathf.Sin ( angle/2 ), Mathf.Cos ( angle/2 ) );
+		}
+	}
+
+}
+
+public static class FauxEditorGizmoSettings
+{
+	public static Color allignGizmoColor = new Color (0, 1, 0, 0.3f);
 }

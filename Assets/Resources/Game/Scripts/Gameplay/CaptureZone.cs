@@ -4,27 +4,28 @@ using System.Collections.Generic;
 
 public class CaptureZone : GameComponent, ICaptureComponent
 {
-	private List<Player> playersInZone 	 = new List<Player> ();
-	private List<Player> capturers = new List<Player> ();
+	private List<GameObject> 	objectsInZone	= new List<GameObject> ();
+	private List<Player> 		playersInZone	= new List<Player> ();
+	private List<Player> 		capturersInZone = new List<Player> ();
 
-	public Team 			capturingTeam;
+	private Team capturingTeam = null;
+	
 	public GameComponent 	CaptureObject; //Most cases, this will be a planet
 
 	public int 		startTime 	= 60; //Starting value of Capture Time - 60 = One Min
 	public float 	resetSpeed 	= 2; // ResetTick - 2 = 30 sec for reset, 3 = 20 sec;
-	
-	public bool	activeCapturing 	= false; //active meaning, players in zone, otherwise counting up to 'startTime' again.
-	public bool	paused 				= false;
 
 	protected float	_captureTime 	= 0;
 	protected bool 	_capturable		= true;
 
 	public float 	CaptureTime	{ get { return _captureTime; } 	set { _captureTime = value; } }
 	public bool 	Capturable 	{ get { return _capturable; } 	set { _capturable = value; } }
-	public bool 	Capturing 	{ get { return (capturingTeam != null); } } //Inactive capturing
 
-	public Player[] PlayersInZone 	{ get { return playersInZone.ToArray(); } }
-	public Player[] Capturers 		{ get { return capturers.ToArray(); } }
+	public bool 	Capturing 	{ get { return (_captureTime < startTime); } } //Inactive capturing
+
+	public GameObject[] ObjectsInZone	{ get { return objectsInZone.ToArray(); } }
+	public Player[] 	PlayersInZone 	{ get { return playersInZone.ToArray(); } }
+	public Player[] 	CapturersInZone { get { return capturersInZone.ToArray(); } }
 
 	void Start()
 	{
@@ -35,120 +36,106 @@ public class CaptureZone : GameComponent, ICaptureComponent
 
 	void OnTriggerEnter2D(Collider2D other)
 	{
-		Player playerInZone = other.GetComponent<Player> ();
-		if (playerInZone != null) // Valid player
+		objectsInZone.Add(other.gameObject);
+		Player player = other.GetComponent<Player> ();
+		if ( player != null ) // player is valid;
 		{
-			playersInZone.Add (playerInZone);
+			playersInZone.Add ( player );
 
-			if ( Capturing )
+			if (capturingTeam == null && !(player.OwnedBy == OwnedBy))
 			{
-				if (playerInZone.OwnedBy == capturingTeam)
-				{
-					capturers.Add (playerInZone);
-				}
-				else
-				{
-					paused = true;
-				}
+				StartCapture( player.OwnedBy );
 			}
-			else if ( playerInZone.OwnedBy != OwnedBy ) 
+
+			if ( player.OwnedBy == capturingTeam ) // the player is a capturer
 			{
-				StartCapture (playerInZone.OwnedBy);
+				capturersInZone.Add ( player );
 			}
 		}
 	}
 	void OnTriggerExit2D(Collider2D other)
 	{
-		Player playerInZone = other.GetComponent<Player> ();
-		if (playerInZone != null) // Valid player
+		objectsInZone.Remove(other.gameObject);
+		Player player = other.GetComponent<Player> ();
+		if ( player != null ) // player is valid;
 		{
-			playersInZone.Remove (playerInZone);
-
-			if ( Capturing )
+			playersInZone.Remove ( player );
+			
+			if ( player.OwnedBy == capturingTeam ) // the team of the player is not already owner
 			{
-				if (playerInZone.OwnedBy == capturingTeam)
-				{
-					capturers.Remove (playerInZone);
-					if (Capturers.Length == 0 )
-					{
-						//Start looking for other players
-						paused = false;
-						activeCapturing = false; // no 'capturers' in zone, start reverting capture.
-					}
-				}
-				else // a 'protecting' player is not 'protecting' anymore
-				{
-					if( Capturers.Length == PlayersInZone.Length ) // All players are capturers
-					{
-						paused = false; // no 'protectors' in zone, continue capturing.
-					}
-				}
-			}
-			else if ( playerInZone.OwnedBy != OwnedBy ) 
-			{
-				StartCapture (playerInZone.OwnedBy);
+				capturersInZone.Remove ( player );
+			
 			}
 		}
 	}
 
 	void Update ()
 	{
-		CaptureTick ();
-	}
+		ValidatePlayersInZone();
 
-	public void CaptureTick()
+		CaptureUpdate ();
+	}
+	void ValidatePlayersInZone()
 	{
-		if (CaptureTime > startTime)
+		foreach ( Player p in PlayersInZone )
 		{
-			StopCapture();
-		}
-		else if (CaptureTime <= 0)
-		{
-			CompleteCapture();
-		}
-		if ( Capturing ) // As long as a team is capturing, active or not, controll timer.
-		{
-			if ( !paused )
+			if ( p.dead )
 			{
-				if ( CaptureTime < startTime ) // Only when players of captureTeam is in zone
+				playersInZone.Remove ( p );
+				if ( p.OwnedBy == capturingTeam)
 				{
-					CaptureTime -= Capturers.Length * Time.deltaTime; // subtract amount of seconds since last CaptureTick
-				}
-				if ( activeCapturing ) // Only when players of captureTeam is in zone
-				{
-					CaptureTime -= Time.deltaTime; // subtract amount of seconds since last CaptureTick
-				}
-				else // If not actively capturing, start resetting captureTime
-				{
-					CaptureTime += resetSpeed*Time.deltaTime;
+					capturersInZone.Remove ( p );
 				}
 			}
 		}
-		else if (PlayersInZone.Length > 0)
+	}
+
+	void CaptureUpdate()
+	{
+		if (capturingTeam != null)
 		{
-			//if () PlayersInZone is of same team.
-			StartCapture (PlayersInZone[0].OwnedBy); // TODO - must pause if there are others in the field
+			if ( CapturersInZone.Length > 0)
+			{
+				if ( CapturersInZone.Length == PlayersInZone.Length ) //Otherwise, don't count the timer, capture is paused
+				{
+					if (CaptureTime < 0)
+					{
+						CompleteCapture();
+					}
+					else
+					{
+						CaptureTime-=Time.deltaTime*CapturersInZone.Length;
+					}
+				}
+			}
+			else
+			{
+				if (CaptureTime > startTime)
+				{
+					StopCapture();
+				}
+				else
+				{
+					CaptureTime+=Time.deltaTime*resetSpeed;
+				}
+			}
 		}
 	}
 
-	public void StartCapture ( Team capTeam )
+	public void StartCapture ( Team capturerTeam )
 	{
-		Debug.Log ("Initializing Capture!");
-		capturingTeam = capTeam;
-		activeCapturing = true;
+		capturingTeam = capturerTeam;
 	}
 
 
 	public void StopCapture ()
 	{
-		Debug.Log ("Capture Stopped!");
 		CaptureTime = startTime;
 		capturingTeam = null;
 	}
 
 	public void CompleteCapture()
 	{
-		Debug.Log ( CaptureObject.name + " Captured!");
 		OwnedBy = capturingTeam;
 		StopCapture ();
 	}

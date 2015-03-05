@@ -6,7 +6,7 @@ public class GravityAttractor : MonoBehaviour
 
 	public void Attract(GameObject pulled, bool keepUpright )
 	{
-		pulled.rigidbody2D.AddForce(AttractForce( pulled ) );
+		pulled.GetComponent<Rigidbody2D>().AddForce(AttractForce( pulled ) );
 		if (keepUpright)
 		{
 			KeepUpright(pulled);
@@ -21,8 +21,8 @@ public class GravityAttractor : MonoBehaviour
 		
 		return 
 			(transform.position - pulled.transform.position).normalized 
-				* rigidbody2D.mass
-				* pulled.rigidbody2D.mass
+				* GetComponent<Rigidbody2D>().mass
+				* pulled.GetComponent<Rigidbody2D>().mass
 				* WorldOptions.GravityScale;
 	}
 	

@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 			Axes[i] += player.playerID;
 		}
 		name += player.playerID;
-		distToGround = collider2D.bounds.extents.y;
+		distToGround = GetComponent<Collider2D>().bounds.extents.y;
 	}
 	void Update () 
 	{
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if(Input.GetButtonDown(Axes[1]) && player.grounded)
 		{
-			rigidbody2D.AddForce( transform.TransformPoint( new Vector2(0,player.jumpForce*rigidbody2D.mass) ) );
+			GetComponent<Rigidbody2D>().AddForce( transform.TransformPoint( new Vector2(0,player.jumpForce*GetComponent<Rigidbody2D>().mass) ) );
 		}
 		if ( Input.GetButtonDown(Axes[2]) )
 		{
@@ -43,14 +43,14 @@ public class PlayerController : MonoBehaviour
 //				if(transform.InverseTransformVector(rigidbody2D.velocity).x < maxSpeed)
 //				{
 				Debug.DrawRay(transform.position, (player.facingRight ? transform.right : -transform.right),Color.magenta);
-				rigidbody2D.AddForce( (player.facingRight ? transform.right : -transform.right) * player.acceleration );
+				GetComponent<Rigidbody2D>().AddForce( (player.facingRight ? transform.right : -transform.right) * player.acceleration );
 //				}
 			}
-			rigidbody2D.drag = 0.075f;
+			GetComponent<Rigidbody2D>().drag = 0.075f;
 		}
 		else
 		{
-			rigidbody2D.drag = 0.01f;
+			GetComponent<Rigidbody2D>().drag = 0.01f;
 		}
 		player.grounded = Physics2D.Raycast(transform.position, -transform.up, distToGround+0.15f, groundMask);
 	}

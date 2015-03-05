@@ -15,7 +15,7 @@ public abstract class Weapon : MonoBehaviour
 //	public virtual delegate void Action;
 	public virtual void Start() 
 	{
-		rigidbody2D.velocity = usedBy.rigidbody2D.velocity;
+		GetComponent<Rigidbody2D>().velocity = usedBy.GetComponent<Rigidbody2D>().velocity;
 		Spawned ();
 	}
 	

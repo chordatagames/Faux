@@ -22,9 +22,9 @@ public class Bazooka : TimerBased
 	{
 		foreach (Collider2D c in Physics2D.OverlapCircleAll (transform.position, explotionSize))
 		{
-			if (c.rigidbody2D != null)
+			if (c.GetComponent<Rigidbody2D>() != null)
 			{
-				c.rigidbody2D.AddForce((c.transform.position - transform.position).normalized * explotionForce);
+				c.GetComponent<Rigidbody2D>().AddForce((c.transform.position - transform.position).normalized * explotionForce);
 				if( c.GetComponent<Living>() != null )
 				{
 					c.GetComponent<Living>().Damage(explotionForce / ((c.transform.position - transform.position).magnitude * (c.transform.position - transform.position).magnitude + 1));

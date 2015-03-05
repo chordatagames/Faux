@@ -42,7 +42,7 @@ public class GameController : MonoBehaviour //TODO make static
 		{
 			GameObject p = World.players[i];
 			player = p.GetComponent<Player>();
-			player.trackCam = new GameObject ("Player_" + player.playerID + "_cam", typeof(Camera), typeof(PlayerCamera)).camera;
+			player.trackCam = new GameObject ("Player_" + player.playerID + "_cam", typeof(Camera), typeof(PlayerCamera)).GetComponent<Camera>();
 			player.trackCam.rect = screens[i];
 			pCam = player.trackCam.GetComponent<PlayerCamera>();
 			pCam.tracking = player.gameObject;

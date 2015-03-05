@@ -26,9 +26,9 @@ public class MassChanger : Shooting
 		Collider2D[] inField = Physics2D.OverlapCircleAll(transform.position, radius, affecting);
 		foreach (Collider2D c in inField)
 		{
-			if (c.rigidbody2D != null)
+			if (c.GetComponent<Rigidbody2D>() != null)
 			{
-				c.rigidbody2D.mass *= change;
+				c.GetComponent<Rigidbody2D>().mass *= change;
 			}
 		}
 	}

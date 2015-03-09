@@ -11,12 +11,11 @@ public class GravityPulled : MonoBehaviour
 
 	void Start ()
 	{
-
 		GetComponent<Rigidbody2D>().fixedAngle = false;
 		attractors = World.GravityAttractors;
 	}
 
-	void FixedUpdate () 
+	void FixedUpdate ()
 	{
 		float biggestAtt = 0;
 		foreach(GameObject attractor in attractors)

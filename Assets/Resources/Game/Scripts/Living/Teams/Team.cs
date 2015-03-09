@@ -4,18 +4,33 @@ using System.Collections.Generic;
 
 public class Team : ScriptableObject
 {
-	public Color 		teamColor = Color.white;
-	public bool 		friendlyFire;
-	public Planet 		SpawnPoint;
-	public List<Player>	players;
+	public Color            teamColor = Color.white;
+	public bool             friendlyFire = false;
+	public Planet           SpawnPoint = null;
+	List<Player>            players = new List<Player>();
+	public Player[]         Players{ get{ return players.ToArray(); } }
 	
 	public void RemovePlayer(Player p)
 	{
 		players.Remove (p);
 	}
 	
+	public void SpawnPlayer()
+	{
+		GameObject player = (GameObject)Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player"));
+		Player p = player.GetComponent<Player> ();
+		p.OwnedBy = this;
+		p.initTeam = this;
+		AddPlayer (p);
+		
+	}
+	
 	public void AddPlayer(Player p)
 	{
+		p.OwnedBy = this;
+		p.initTeam = this; // LATERON, this is INVALID
+		p.pa.UpdateColors();
+		Debug.Log ("Added Player: " + p);
 		players.Add(p);
 	}
 	

@@ -14,8 +14,10 @@ public class PlayerAnimator : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
 		parent = transform.parent;
-	
-		//Temporary placement of code, TODO when starting game, players may choose color.
+	}
+
+	public void UpdateColors ()
+	{
 		GetComponent<SpriteRenderer>().material.SetColor("_Color", player.OwnedBy.teamColor);
 	}
 

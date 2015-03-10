@@ -12,26 +12,29 @@ public class PlayRecording : MonoBehaviour
 	{
 		if (Input.GetKeyDown (KeyCode.Backspace) && Input.GetKey (KeyCode.RightShift))
 		{
-			CreatePlayerGhost();
+			CreatePlayerGhosts();
 		}
 	}
 
-	PlayerRecord LoadRecording ()
+	MatchRecord LoadRecording ()
 	{
 		BinaryFormatter bf = new BinaryFormatter ();
 		FileStream file = File.Open (Application.dataPath + "/Recordings/LastRecording.dat", FileMode.Open);
 		Debug.Log ("Loaded recording from " + Application.dataPath + "/Recordings/LastRecording.dat");
 
-		PlayerRecord playerRecord = (PlayerRecord)bf.Deserialize (file);
+		MatchRecord matchRecord = (MatchRecord)bf.Deserialize (file);
 		file.Close ();
 
-		return playerRecord;
+		return matchRecord;
 	}
 
-	void CreatePlayerGhost()
+	void CreatePlayerGhosts()
 	{
-		Debug.Log ("Creating player ghost");
-		GameObject ghost = Instantiate (Resources.Load<GameObject>("Game/Prefabs/PlayerGhost"));
-		ghost.GetComponent<PlayerGhostBehaviour>().playerRecord = LoadRecording();
+		Debug.Log ("Creating player ghosts");
+		foreach (PlayerRecord playerRecord in LoadRecording().playerRecords)
+		{
+			GameObject ghost = Instantiate (Resources.Load<GameObject>("Game/Prefabs/PlayerGhost"));
+			ghost.GetComponent<PlayerGhostBehaviour>().playerRecord = playerRecord;
+		}
 	}
 }

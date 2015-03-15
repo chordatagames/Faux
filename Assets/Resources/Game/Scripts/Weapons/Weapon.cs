@@ -11,26 +11,41 @@ public abstract class Weapon : GameComponent
 	public float cooldown;
 	public GameObject product; 
 
-	private float cooldownTime = 0; 
+	protected bool shooting = false;
+
+	private float cooldownTime;
 
 	public void Start() 
 	{
+		Debug.Log (cooldownTime);
+		cooldownTime = 0;
 		//OwnedBy = Team.GetTeam(PickedUpBy);
 		Spawned();
 	}
 
-	public void Update()
+	public virtual void Update()
 	{
-		if (cooldownTime > 0) cooldownTime -= Time.deltaTime;
+		if (cooldownTime > 0) 
+		{
+			Debug.Log ("IM TRY ING M U M "+cooldownTime);
+			cooldownTime -= Time.deltaTime;
+			shooting = true;
+		}
+		else 
+		{
+			shooting = false;
+		}
 	}
 
 	public void FireWeapon() 
 	{
-		if (cooldownTime <= 0) 
+		Debug.Log ("shooting: "+shooting+" cooldown time: "+cooldownTime);
+		if (!shooting)
 		{
-			GameObject _product = (GameObject)Instantiate(product, transform.position, Quaternion.identity);
-			_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
+			GameObject _product = (GameObject) Instantiate(product, transform.position, Quaternion.identity);
+			//_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
 			if (amountOfUses != -1) amountOfUses--;
+			Debug.Log(cooldown+","+cooldownTime);
 			cooldownTime = cooldown;
 			WeaponFireBehaviour(_product);
 		}

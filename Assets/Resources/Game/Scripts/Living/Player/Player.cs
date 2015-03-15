@@ -31,6 +31,6 @@ public class Player : Living
 		pa = transform.FindChild("Sprite").GetComponent<PlayerAnimator>();
 		pa.player = this;
 		pw = GetComponent<WeaponHolder>();
-		pw.weapon.PickedUpBy = this;
+		pw.weaponScript.PickedUpBy = this;
 	}
 }

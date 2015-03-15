@@ -10,7 +10,7 @@ using System.Collections;
 [RequireComponent(typeof(GravityPulled))]
 public abstract class Weapon : GameComponent
 {
-	public Player usedBy { get; set; } //Can possibly be changed to type of 'Player'
+	public Player usedBy { get; set; }
 
 //	public virtual delegate void Action;
 	public virtual void Start() 

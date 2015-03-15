@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -136,8 +136,6 @@ public class GameController : MonoBehaviour //TODO make static
 	{
 		//A MULTIPLAYER GAME NEEDS AT LEAST TWO PLAYERS AND TWO TEAMS.
 		players.Add(Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player")).GetComponent<Player>());
-		players.Add(Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player")).GetComponent<Player>());
-		teams.Add(ScriptableObject.CreateInstance<Team>());
 		teams.Add(ScriptableObject.CreateInstance<Team>());
 
 		GameObject projectilesParent = new GameObject();

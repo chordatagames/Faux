@@ -4,7 +4,6 @@ using System.Collections;
 public class Flag : GameComponent, IPickupComponent
 {
 	protected bool	_canPickUp 	= false;
-	protected bool	_heldBy;
 
 	public bool CanPickUp 	{ get { return _canPickUp; } set { _canPickUp = value; } }
 	public bool PickedUp 	{ get { return HeldBy != null; } }

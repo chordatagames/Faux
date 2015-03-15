@@ -10,25 +10,27 @@ using System.Collections;
 [RequireComponent(typeof(GravityPulled))]
 public abstract class Weapon : GameComponent
 {
-	public Player usedBy { get; set; } //Can possibly be changed to type of 'Player'
+	public Player PickedUpBy { get; set; } //Can possibly be changed to type of 'Player'
+	/// <summary>
+	/// The amount of times a weapon can be used before it is EXTERMINATED.
+	/// </summary>
+	public int amountOfUses;
+	public float cooldown;
 
-//	public virtual delegate void Action;
-	public virtual void Start() 
+	public WeaponProduct product; 
+
+	public void Start() 
 	{
-		OwnedBy = Team.GetTeam (usedBy);
-		GetComponent<Rigidbody2D>().velocity = usedBy.GetComponent<Rigidbody2D>().velocity;
-		Spawned ();
+		OwnedBy = Team.GetTeam(PickedUpBy);
+		Spawned();
 	}
-	
-	public virtual void Spawned ()
-	{
+
+	/// <summary>
+	/// Called on spawn of weapon. Amount of uses and cooldown must be specified.
+	/// </summary>
+	public abstract void Spawned();
+	public virtual void FireWeapon() {
+		WeaponProduct wp = (WeaponProduct) Instantiate(product, transform.position, Quaternion.identity);
+		wp.ShotBy = PickedUpBy; // does this make a lick of sense i am so tired
 	}
 }
-
-public enum Weapons
-{
-	GRENADE_LAUNCHER,
-	MASS_CHANGER,
-	RPG
-}
-

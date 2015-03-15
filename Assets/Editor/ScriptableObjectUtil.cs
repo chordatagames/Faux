@@ -35,7 +35,7 @@ public static class ScriptableObjectUtil
 public class TeamAsset
 {
 	[MenuItem("Assets/Create/Team")]
-	public static void CreateAsset ()
+	public static void CreateAsset()
 	{
 		ScriptableObjectUtil.CreateAsset<Team> ();
 	}
@@ -44,7 +44,7 @@ public class TeamAsset
 public class WeaponDBAsset
 {
 	[MenuItem("Assets/Create/WeaponDB")]
-	public static void CreateAsset ()
+	public static void CreateAsset()
 	{
 		ScriptableObjectUtil.CreateAsset<WeaponDB> ();
 	}

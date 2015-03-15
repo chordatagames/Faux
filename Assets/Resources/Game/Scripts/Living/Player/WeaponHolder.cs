@@ -14,8 +14,8 @@ public class WeaponHolder : MonoBehaviour {
 			Weapon = value.GetComponent<Weapon>();
 			Weapon.PickedUpBy = gameObject.GetComponent<Player>();
 			GameObject obj = (GameObject) Instantiate(weaponObject,transform.position,Quaternion.identity);
+			obj.transform.position = transform.position;
 			obj.transform.parent = transform;
-			obj.transform.position = obj.transform.parent.position;
 		} 
 	}
 

@@ -2,12 +2,20 @@
 using System.Collections;
 
 public class ThornyKatana : Weapon {
+	Animator anim;
+
 	protected override void Spawned() {
-		// doesn't really need to do anything, i guess?
+		anim = GetComponent<Animator>();
 	}
 
 	protected override void WeaponFireBehaviour (GameObject product)
 	{
-		GetComponent<Animation>().Play();
+
+	}
+
+	public override void Update() 
+	{
+		base.Update();
+		//anim.SetBool("shooting",shooting);
 	}
 }

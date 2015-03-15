@@ -12,10 +12,11 @@ public class Team : ScriptableObject
 	
 	public void RemovePlayer(Player p)
 	{
+		p.OwnedBy = p.initTeam;
 		players.Remove (p);
 	}
-	
-	public void SpawnPlayer()
+
+	public void SpawnPlayer() //OBSOLETE
 	{
 		GameObject player = (GameObject)Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player"));
 		Player p = player.GetComponent<Player> ();
@@ -24,11 +25,10 @@ public class Team : ScriptableObject
 		AddPlayer (p);
 		
 	}
-	
+
 	public void AddPlayer(Player p)
 	{
 		p.OwnedBy = this;
-		p.initTeam = this; // LATERON, this is INVALID
 		p.pa.UpdateColors();
 		Debug.Log ("Added Player: " + p);
 		players.Add(p);
@@ -50,7 +50,6 @@ public class Team : ScriptableObject
 	
 	public override string ToString()
 	{
-		return(string.Format("({0},{1},{2},{3})", name, teamColor, friendlyFire, players.ToArray()));
+		return(string.Format("({0},{1},{2},{3})", name, teamColor, friendlyFire, players.ToArray().ToString()));
 	}
-	
 }

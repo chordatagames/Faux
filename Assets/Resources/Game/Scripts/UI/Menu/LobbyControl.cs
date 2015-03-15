@@ -11,18 +11,17 @@ using System.Collections.Generic;
 public class LobbyControl : MonoBehaviour
 {
 	List<Player> players = new List<Player>();
-	Player[] Players {get { return players.ToArray(); } }
-
-	List<Team> teams = new List<Team>();
-	Team[] Teams {get { return teams.ToArray(); } }
+	public Player[] Players {get { return players.ToArray(); } }
 
 	List<TeamUIControl> teamUIs = new List<TeamUIControl>();
 	TeamUIControl[] TeamUIs {get { return teamUIs.ToArray(); } }
 
 	public InputField playerCount;
 	public InputField notInTeams;
+	public Transform teamBox;
+	public Canvas canvas;
 
-
+	
 	/// <summary>
 	/// Start this instance.
 	/// Set up a basic game with 2 players and 2 teams.
@@ -31,61 +30,72 @@ public class LobbyControl : MonoBehaviour
 	{
 		for(int i = 0; i < 2; i++)
 		{
-			players.Add(Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player")).GetComponent<Player>());
-			teams.Add(ScriptableObject.CreateInstance<Team>());
+			AddPlayer();
+			AddTeam();
 		}
-
-		UpdatePlayerCount();
-		UpdateNotInTeams();
+		teamBox.GetChild(0).SetAsLastSibling();
 	}
 
-	public void UpdatePlayerCount()
+	
+	public void StartGame()
 	{
-		playerCount.text = Players.Length.ToString();
+
 	}
-
-	public void UpdateNotInTeams()
-	{
-		int i = 0;
-		foreach( Team t in Teams )
-		{
-			i += t.Players.Length;
-		}
-
-		notInTeams.text = ( Players.Length - i ).ToString();
-	}
-
 
 
 	public void AddPlayer()
 	{
 		players.Add(Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player")).GetComponent<Player>());
+		UpdatePlayerCount();
 	}
-
-	public void RemovePlayer()
+	
+	public void RemovePlayer()//Only removable if not in team already
 	{
-		if (Players.Length > 2)
+		if (Players.Length > 2 && (Players.Length-UnteamedPlayers().Length) >= 0 )
 		{
-			Destroy( Players[ Players.Length-1 ].gameObject );
+			Destroy(Players[ Players.Length-1 ].gameObject);
 			players.RemoveAt( Players.Length-1 );
 		}
+		UpdatePlayerCount();
 	}
-
+	
 	public void AddTeam()
 	{
-		if(Teams.Length < Players.Length)
+		if( TeamUIs.Length < Players.Length )
 		{
-			teams.Add(ScriptableObject.CreateInstance<Team>());
-			teamUIs.Add(Instantiate( Resources.Load<GameObject> ("Game/Prefabs/UI/Menu/TeamUI")).GetComponent<TeamUIControl>());
+			GameObject newTeamUI = (GameObject)Instantiate( Resources.Load<GameObject>("Game/Prefabs/UI/Menu/TeamUI") );
+			newTeamUI.transform.SetParent(teamBox, false);
+			teamUIs.Add( newTeamUI.GetComponent<TeamUIControl>() );
 		}
 	}
-
+	
 	public void RemoveTeam()
 	{
-		if (Teams.Length > 2)
+		if (TeamUIs.Length > 2)
 		{
-			teams.RemoveAt(Teams.Length-1);
+			Destroy(TeamUIs[TeamUIs.Length-1].gameObject);
+			teamUIs.RemoveAt(TeamUIs.Length-1);
 		}
 	}
 
+	public Player[] UnteamedPlayers()
+	{
+		List<Player> unteamedPlayers = new List<Player>();
+		foreach(Player p in Players)
+		{
+			if (p.OwnedBy == p.initTeam) //Is player owned by Default Team - equivalent to 'unteamed'.
+			{
+				unteamedPlayers.Add(p);
+			}
+		}
+		return unteamedPlayers.ToArray();
+	}
+
+	//Update UI
+
+	public void UpdatePlayerCount()
+	{
+		playerCount.text = Players.Length.ToString();
+		notInTeams.text = UnteamedPlayers().Length.ToString();
+	}
 }

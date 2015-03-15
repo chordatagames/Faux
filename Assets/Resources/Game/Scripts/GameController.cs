@@ -5,7 +5,6 @@ using System.Collections.Generic;
 //FIXME -- Many Settings are invalid
 public class GameController : MonoBehaviour //TODO make static
 {
-	//public Team[] teams = new Team[GameOptions.Teams];
 
 	public bool generateGame = false;
 

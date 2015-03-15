@@ -29,8 +29,8 @@ public abstract class Weapon : GameComponent
 	/// Called on spawn of weapon. Amount of uses and cooldown must be specified.
 	/// </summary>
 	public abstract void Spawned();
-	public virtual void Action() {
-		WeaponProduct wp = Instantiate(product, transform.position, Quaternion.identity);
-		wp.ShotBy = PickedUpBy; // does this make a lick of sense i am so tired yo
+	public virtual void FireWeapon() {
+		WeaponProduct wp = (WeaponProduct) Instantiate(product, transform.position, Quaternion.identity);
+		wp.ShotBy = PickedUpBy; // does this make a lick of sense i am so tired
 	}
 }

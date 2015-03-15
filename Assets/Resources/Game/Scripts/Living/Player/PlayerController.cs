@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if ( Input.GetButtonDown(Axes[2]) )
 		{
-			player.pw.FireWeapon();
+			player.pw.weapon.FireWeapon();
 		}
 	}
 

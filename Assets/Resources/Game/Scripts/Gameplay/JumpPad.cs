@@ -3,11 +3,11 @@ using System.Collections;
 
 public class JumpPad : GameComponent, IAlignable
 {
-	private float _allignRadius = 5;
+	private float _alignRadius = 5;
 
 	public LayerMask affectingLayers;
 	public float pushForce = 1200;
-	public float alignRadius { get { return _allignRadius; } set { _allignRadius = value; } }
+	public float alignRadius { get { return _alignRadius; } set { _alignRadius = value; } }
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
@@ -23,7 +23,7 @@ public class JumpPad : GameComponent, IAlignable
 
 	void OnDrawGizmosSelected()
 	{
-		Gizmos.color = FauxEditorGizmoSettings.allignGizmoColor;
+		Gizmos.color = FauxEditorGizmoSettings.alignGizmoColor;
 		Gizmos.DrawSphere(transform.position, 5);
 	}
 
@@ -43,5 +43,5 @@ public class JumpPad : GameComponent, IAlignable
 
 public static class FauxEditorGizmoSettings
 {
-	public static Color allignGizmoColor = new Color (0, 1, 0, 0.3f);
+	public static Color alignGizmoColor = new Color (0, 1, 0, 0.3f);
 }

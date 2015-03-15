@@ -5,7 +5,7 @@ using System.Collections;
 
 public abstract class GameComponent : MonoBehaviour
 {
-	public bool onlyOwnerUse = true; //Invalid for some?
+	public bool onlyOwnerUse = false; //Invalid for some?
 	public Team OwnedBy { get; set; }
 }
 public interface IPickupComponent
@@ -25,7 +25,7 @@ public interface ICaptureComponent
 	void StopCapture();
 	void CompleteCapture();
 }
-public interface IAllignable
+public interface IAlignable
 {
 	float allignRadius {get; set;}
 	void AllignTo(Collider2D body);

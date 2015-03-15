@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class PlayerWeapon : MonoBehaviour //Weapon handler for players - may ned "genericification".
@@ -35,7 +35,7 @@ public class PlayerWeapon : MonoBehaviour //Weapon handler for players - may ned
 		{
 			fired.transform.parent = projectiles;
 			usedWeapon = fired.GetComponent<Weapon>();// GENERIC! The "Grenade" component is inherited from Weapon.
-			usedWeapon.usedBy = player;
+			usedWeapon.PickedUpBy = player;
 			usedWeapon.transform.position = transform.position + (player.facingRight ? transform.right : -transform.right);
 		}
 	}

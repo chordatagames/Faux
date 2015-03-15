@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-[RequireComponent(typeof(PlayerController), typeof(PlayerWeapon))] //PlayerAnimator is in child
+[RequireComponent(typeof(PlayerController), typeof(Weapon))] //PlayerAnimator is in child
 public class Player : Living
 {
 	public Team initTeam; //ONLY USE FOR SETTING THE INITIAL TEAM, Use Owned by otherwise
@@ -17,7 +17,7 @@ public class Player : Living
 	
 	public PlayerController pc { get; set; }
 	public PlayerAnimator 	pa { get; set; }
-	public PlayerWeapon		pw { get; set; }
+	public Weapon			pw { get; set; }
 	
 	void Awake ()
 	{
@@ -30,8 +30,7 @@ public class Player : Living
 		pc.player = this;
 		pa = transform.FindChild("Sprite").GetComponent<PlayerAnimator>();
 		pa.player = this;
-		pw = GetComponent<PlayerWeapon>();
-		pw.player = this;
+		pw = GetComponent<Weapon>();
+		pw.PickedUpBy = this;
 	}
-
 }

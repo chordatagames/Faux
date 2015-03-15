@@ -40,3 +40,12 @@ public class TeamAsset
 		ScriptableObjectUtil.CreateAsset<Team> ();
 	}
 }
+
+public class WeaponDBAsset
+{
+	[MenuItem("Assets/Create/WeaponDB")]
+	public static void CreateAsset ()
+	{
+		ScriptableObjectUtil.CreateAsset<WeaponDB> ();
+	}
+}

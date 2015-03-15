@@ -9,7 +9,7 @@ using System.Collections.Generic;
  * making it possible to implement multiple weapon functionalities.
  */
 [RequireComponent(typeof(GravityPulled))]
-public class Weapon : ScriptableObject
+public abstract class Weapon : GameComponent
 {
 	public Player PickedUpBy { get; set; } //Can possibly be changed to type of 'Player'
 	/// <summary>
@@ -17,8 +17,6 @@ public class Weapon : ScriptableObject
 	/// </summary>
 	public int amountOfUses;
 	public float cooldown;
-	public Sprite sprite;
-	public Weapon script;
 	public GameObject product; 
 
 	public void Start() 
@@ -26,10 +24,7 @@ public class Weapon : ScriptableObject
 		Spawned();
 	}
 
-	public virtual void Spawned()
-	{
-		ScriptableObject.CreateInstance<Weapon>();
-	}
+	public abstract void Spawned();
 	public virtual void FireWeapon() 
 	{
 		WeaponProduct wp = (WeaponProduct) Instantiate(product, PickedUpBy.transform.position, Quaternion.identity);

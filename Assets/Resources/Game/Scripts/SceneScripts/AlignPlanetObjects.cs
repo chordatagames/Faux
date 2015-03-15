@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 [ExecuteInEditMode()]
-public class AllignPlanetObjects : MonoBehaviour 
+public class AlignPlanetObjects : MonoBehaviour 
 {
 	void OnRenderObject ()
 	{

@@ -134,6 +134,7 @@ public class GameController : MonoBehaviour //TODO make static
 
 	void Start ()
 	{
+		WeaponDB.instance.PopulateDictionary();
 		//A MULTIPLAYER GAME NEEDS AT LEAST TWO PLAYERS AND TWO TEAMS.
 		players.Add(Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player")).GetComponent<Player>());
 		teams.Add(ScriptableObject.CreateInstance<Team>());

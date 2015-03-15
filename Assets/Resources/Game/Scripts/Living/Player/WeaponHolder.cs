@@ -11,15 +11,13 @@ public class WeaponHolder : MonoBehaviour {
 		set 
 		{ 
 			weaponObject = value;
-			weaponScript = value.GetComponent<Weapon>(); // I don't know C# let's be honest here
+			Weapon = value.GetComponent<Weapon>();
+			Weapon.PickedUpBy = gameObject.GetComponent<Player>();
+			GameObject obj = (GameObject) Instantiate(weaponObject,transform.position,Quaternion.identity);
+			obj.transform.parent = transform;
+			obj.transform.position = obj.transform.parent.position;
 		} 
 	}
 
-	[HideInInspector] //...
-	public Weapon weaponScript;
-
-	// this is a lot uglier than i wanted it to be but whatever. at least it's easy to change.
-	public void Start() {
-		WeaponObject = WeaponDB.WeaponDictionary["NoWeapon"]; // possibly make this a value "StartingWeapon"?
-	}
+	public Weapon Weapon { get; set; }
 }

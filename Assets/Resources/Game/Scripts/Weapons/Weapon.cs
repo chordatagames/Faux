@@ -1,17 +1,9 @@
 using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
-/*
- * TODO Insert generic weapon functionalities and properties.
- * All weapons will derive from this class.
- * A set of types of weapons can be specified with interfaces, 
- * making it possible to implement multiple weapon functionalities.
- */
-[RequireComponent(typeof(GravityPulled))]
 public abstract class Weapon : GameComponent
 {
-	public Player PickedUpBy { get; set; } //Can possibly be changed to type of 'Player'
+	public Player PickedUpBy { get; set; }
 	/// <summary>
 	/// The amount of times a weapon can be used before it is EXTERMINATED.
 	/// </summary>
@@ -19,15 +11,38 @@ public abstract class Weapon : GameComponent
 	public float cooldown;
 	public GameObject product; 
 
+	private float cooldownTime = 0; 
+
 	public void Start() 
 	{
+		//OwnedBy = Team.GetTeam(PickedUpBy);
 		Spawned();
 	}
 
-	public abstract void Spawned();
-	public virtual void FireWeapon() 
+	public void Update()
 	{
-		WeaponProduct wp = (WeaponProduct) Instantiate(product, PickedUpBy.transform.position, Quaternion.identity);
-		wp.ShotBy = PickedUpBy; // does this make a lick of sense i am so tired
+		if (cooldownTime > 0) cooldownTime -= Time.deltaTime;
 	}
+
+	public void FireWeapon() 
+	{
+		if (cooldownTime <= 0) 
+		{
+			GameObject _product = (GameObject)Instantiate(product, transform.position, Quaternion.identity);
+			_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
+			if (amountOfUses != -1) amountOfUses--;
+			cooldownTime = cooldown;
+			WeaponFireBehaviour(_product);
+		}
+	}
+
+	/// <summary>
+	/// Called on spawn of weapon. Amount of uses and cooldown must be specified. 
+	/// Custom behaviour for spawning.
+	/// </summary>
+	protected abstract void Spawned();
+	/// <summary>
+	/// Code ran after method FireWeapon is run. Custom behaviour for weapon.
+	/// </summary>
+	protected abstract void WeaponFireBehaviour(GameObject product); 
 }

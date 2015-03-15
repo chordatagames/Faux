@@ -6,6 +6,6 @@ using System.Collections;
 /// </summary>
 public class NoWeapon : Weapon {
 	public override void Spawned() {
-		ScriptableObject.CreateInstance<NoWeapon>();
+		// nah.
 	}
 }

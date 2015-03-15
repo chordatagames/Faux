@@ -6,7 +6,6 @@ using System.Collections;
 /// </summary>
 public class NoWeapon : Weapon {
 	public override void Spawned() {
-		// do nothing, there is nothing here 
-		// ¯\_(ツ)_/¯ go away
+		ScriptableObject.CreateInstance<NoWeapon>();
 	}
 }

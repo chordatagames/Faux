@@ -6,7 +6,7 @@ public class GravityAttractor : MonoBehaviour
 
 	public void Attract(GameObject pulled, bool keepUpright )
 	{
-		pulled.GetComponent<Rigidbody2D>().AddForce(AttractForce( pulled ) );
+		pulled.GetComponent<Rigidbody2D>().AddForce(AttractForce( pulled ));
 		if (keepUpright)
 		{
 			KeepUpright(pulled);
@@ -26,7 +26,7 @@ public class GravityAttractor : MonoBehaviour
 				* WorldOptions.GravityScale;
 	}
 	
-	public void KeepUpright(GameObject pulled) //Keep all calls of this function to Update, not FixedUpdate, or chracter will appear wrongly rotated when moving
+	public void KeepUpright(GameObject pulled) //Keep all calls of this function to Update, not FixedUpdate, or character will appear wrongly rotated when moving
 	{
 		Vector2 dir = new Vector2(transform.position.x - pulled.transform.position.x, transform.position.y - pulled.transform.position.y).normalized;
 		float angle = Vector2.Angle(Vector2.right, dir)*Mathf.Deg2Rad*Mathf.Sign(dir.y) + Mathf.PI/2;

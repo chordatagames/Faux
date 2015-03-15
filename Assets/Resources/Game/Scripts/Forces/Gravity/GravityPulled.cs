@@ -8,7 +8,6 @@ public class GravityPulled : MonoBehaviour
 	GameObject[] attractors;
 	GameObject closest;
 
-
 	void Start ()
 	{
 		GetComponent<Rigidbody2D>().fixedAngle = false;

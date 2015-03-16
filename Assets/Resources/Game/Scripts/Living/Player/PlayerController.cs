@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
 		}
 		if ( Input.GetButtonDown(Axes[2]) )
 		{
-			Debug.Log ("fire");
+
 			player.pw.Weapon.FireWeapon();
 		}
 	}

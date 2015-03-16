@@ -9,43 +9,35 @@ public abstract class Weapon : GameComponent
 	/// </summary>
 	public int amountOfUses;
 	public float cooldown;
-	public GameObject product; 
+	public GameObject product;
 
-	protected bool shooting = false;
+	protected bool HasShot { get { return (cooldownTime > 0); } }
+	protected float cooldownTime;
 
-	private float cooldownTime;
-
-	public void Start() 
+	void Start() 
 	{
-		Debug.Log (cooldownTime);
-		cooldownTime = 0;
+		cooldownTime = 0; //CAN SHOOT
 		//OwnedBy = Team.GetTeam(PickedUpBy);
 		Spawned();
 	}
 
-	public virtual void Update()
+	 void Update()
 	{
-		if (cooldownTime > 0) 
+		if (HasShot) 
 		{
-			Debug.Log ("IM TRY ING M U M "+cooldownTime);
 			cooldownTime -= Time.deltaTime;
-			shooting = true;
-		}
-		else 
-		{
-			shooting = false;
+			Debug.Log(cooldown+", "+cooldownTime);
 		}
 	}
 
 	public void FireWeapon() 
 	{
-		Debug.Log ("shooting: "+shooting+" cooldown time: "+cooldownTime);
-		if (!shooting)
+		if (!HasShot)
 		{
 			GameObject _product = (GameObject) Instantiate(product, transform.position, Quaternion.identity);
 			//_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
 			if (amountOfUses != -1) amountOfUses--;
-			Debug.Log(cooldown+","+cooldownTime);
+
 			cooldownTime = cooldown;
 			WeaponFireBehaviour(_product);
 		}

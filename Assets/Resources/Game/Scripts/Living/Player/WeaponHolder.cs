@@ -16,8 +16,10 @@ public class WeaponHolder : MonoBehaviour {
 
 			weaponObject = obj;
 			Weapon = weaponObject.GetComponent<Weapon>();
-			Weapon.PickedUpBy = gameObject.GetComponent<Player>();
+			var player = Weapon.PickedUpBy = gameObject.GetComponent<Player>();
 
+			// Attach weapon to player
+			WeaponFollow.Attach(weaponObject.transform, player, new Vector2(.6f, -.1f));
 		} 
 	}
 

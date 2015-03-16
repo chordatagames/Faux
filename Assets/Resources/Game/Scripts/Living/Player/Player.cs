@@ -12,9 +12,6 @@ public class Player : Living
 	public float maxSpeed_TODO;//TODO
 	public float jumpForce;
 	public string startingWeapon; //TODO - access The WeaponDB and make dropdownmenu for selecting an item from the DB
-	
-	public WeaponDB wdb;
-
 
 	public Camera trackCam { get; set; }
 	// throwMomentum per weapon makes more sense
@@ -35,16 +32,16 @@ public class Player : Living
 		pa = transform.FindChild("Sprite").GetComponent<PlayerAnimator>();
 		pa.player = this;
 		pw = GetComponent<WeaponHolder>();
-		wdb.PopulateDictionary();
-		PickUpWeapon(wdb.WeaponDictionary[startingWeapon]);
 	}
+
 	void Start()
 	{
-
+		PickUpWeapon(GameController.weaponDB.WeaponDictionary[startingWeapon]);
 	}
 
 	public void PickUpWeapon(GameObject weapon) 
 	{
+		Debug.Log(pw.Weapon.name);
 		pw.WeaponObject = weapon;
 		pw.Weapon.PickedUpBy = this;
 	}

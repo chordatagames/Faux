@@ -12,8 +12,9 @@ public class WeaponDB : ScriptableObject
 		public GameObject weapon;
 	}
 
-	public List<WeaponEntry> weaponEntries = new List<WeaponEntry>(); 
-	public WeaponEntry[] WeaponEntries { get { return weaponEntries.ToArray(); } }
+	[SerializeField]
+	private List<WeaponEntry> weaponEntries = new List<WeaponEntry>(); 
+	private WeaponEntry[] WeaponEntries { get { return weaponEntries.ToArray(); } }
 
 	public Dictionary<string, GameObject> WeaponDictionary = new Dictionary<string,GameObject>();
 	public void PopulateDictionary() 

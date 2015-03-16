@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 6c074c8aa88b1f745bdd93d87dcd97b1
-timeCreated: 1426431126
+timeCreated: 1426529386
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -60,8 +60,8 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .100000001, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ThornyKatana_1
       rect:
@@ -70,8 +70,8 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .100000001, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ThornyKatana_2
       rect:
@@ -80,8 +80,8 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .100000001, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: ThornyKatana_3
       rect:
@@ -90,8 +90,8 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: .100000001, y: .100000001}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ThornyKatana : Weapon {
+public class ThornyKatana : Weapon 
+{
 	Animator anim;
 
 	protected override void Spawned() 

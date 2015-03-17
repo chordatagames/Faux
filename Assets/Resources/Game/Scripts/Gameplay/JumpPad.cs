@@ -11,12 +11,13 @@ public class JumpPad : GameComponent, IAlignable
 
 	void OnTriggerEnter2D(Collider2D col)
 	{
-		if( !onlyOwnerUse || col.GetComponent<GameComponent>().OwnedBy == OwnedBy) 
+		if(!onlyOwnerUse || col.GetComponent<GameComponent>().OwnedBy == OwnedBy) 
 		{
 			if (((1<<col.gameObject.layer) & affectingLayers) != 0)
 			{
 				// Will push all objects just as hard regardless of mass
-				col.GetComponent<Rigidbody2D>().AddForce(pushForce * col.GetComponent<Rigidbody2D>().mass * transform.up); 
+				if (col.GetComponent<Rigidbody2D>() != null)
+					col.GetComponent<Rigidbody2D>().AddForce(pushForce * col.GetComponent<Rigidbody2D>().mass * transform.up); 
 			}
 		}
 	}

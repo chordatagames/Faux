@@ -14,7 +14,7 @@ public class WeaponDB : ScriptableObject
 
 	[SerializeField]
 	private List<WeaponEntry> weaponEntries = new List<WeaponEntry>(); 
-	private WeaponEntry[] WeaponEntries { get { return weaponEntries.ToArray(); } }
+	public WeaponEntry[] WeaponEntries { get { return weaponEntries.ToArray(); } }
 
 	// This is just a lot fucking simpler ya feel me brostoevsky?
 	public GameObject Get(string name) 

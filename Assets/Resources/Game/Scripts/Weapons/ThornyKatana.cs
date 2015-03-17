@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-[RequireComponent(typeof(Animator))]
 public class ThornyKatana : Weapon {
 	Animator anim;
 
@@ -12,6 +11,6 @@ public class ThornyKatana : Weapon {
 
 	protected override void WeaponFireBehaviour (GameObject product)
 	{
-		anim.SetBool("shooting",true);
+		anim.SetTrigger("attack");
 	}
 }

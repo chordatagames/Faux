@@ -36,6 +36,8 @@ public class Player : Living
 
 	void Start()
 	{
+		if (startingWeapon == "NoWeapon")
+			print("Starting weapon is NoWeapon"); //there's not a story here, promise
 		PickUpWeapon(GameController.WeaponDictionary.Get(startingWeapon));
 	}
 

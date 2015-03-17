@@ -33,7 +33,8 @@ public class WeaponFollow : MonoBehaviour
 		// Calcualte the offset and bobbing
 		Vector2 usableOffset = new Vector2(
 			target.facingRight ? offset.x : -offset.x,
-			offset.y + Mathf.Sin(bobTime * BOB_SPEED) * BOB_AMOUNT);
+			offset.y + Mathf.Sin(bobTime * BOB_SPEED) * BOB_AMOUNT
+		);
 
 		// The bob time
 		bobTime += Mathf.Min(Mathf.Abs(targetRigid.GetRelativePointVelocity(Vector2.right).x), BOB_INSENSITIVITY) / BOB_INSENSITIVITY;

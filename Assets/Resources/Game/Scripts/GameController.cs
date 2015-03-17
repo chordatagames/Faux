@@ -5,7 +5,12 @@ using System.Collections.Generic;
 //FIXME -- Many Settings are invalid
 public class GameController : MonoBehaviour //TODO make static
 {
+	public static GameController instance;
 	//public Team[] teams = new Team[GameOptions.Teams];
+
+	[SerializeField]
+	private WeaponDB wdb;
+	public static WeaponDB WeaponDictionary { get { return instance.wdb; } }
 
 	public bool generateGame = false;
 
@@ -31,7 +36,7 @@ public class GameController : MonoBehaviour //TODO make static
 	Player[] Players {get { return players.ToArray(); } }
 
 	int playersInTeams = 0;
-	
+
 	void OnGUI()
 	{
 		if (!started)
@@ -129,12 +134,11 @@ public class GameController : MonoBehaviour //TODO make static
 				SetupPlayers();
 			}
 		}
-		
 	}
 
-	void Start ()
+	void Start()
 	{
-		WeaponDB.instance.PopulateDictionary();
+		instance = this;
 		//A MULTIPLAYER GAME NEEDS AT LEAST TWO PLAYERS AND TWO TEAMS.
 		players.Add(Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player")).GetComponent<Player>());
 		teams.Add(ScriptableObject.CreateInstance<Team>());

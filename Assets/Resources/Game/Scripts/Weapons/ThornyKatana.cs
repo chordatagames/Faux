@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(Animator))]
 public class ThornyKatana : Weapon {
-	protected override void Spawned() {
-		// doesn't really need to do anything, i guess?
+	Animator anim;
+
+	protected override void Spawned() 
+	{
+		anim = GetComponent<Animator>();
 	}
 
 	protected override void WeaponFireBehaviour (GameObject product)
 	{
-		GetComponent<Animation>().Play();
+		anim.SetBool("shooting",true);
 	}
 }

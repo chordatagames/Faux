@@ -10,12 +10,16 @@ public class WeaponHolder : MonoBehaviour {
 		} 
 		set 
 		{ 
-			weaponObject = value;
-			Weapon = value.GetComponent<Weapon>();
-			Weapon.PickedUpBy = gameObject.GetComponent<Player>();
-			GameObject obj = (GameObject) Instantiate(weaponObject,transform.position,Quaternion.identity);
+			GameObject obj = (GameObject) Instantiate(value,transform.position,Quaternion.identity);
+			obj.transform.position = transform.position;
 			obj.transform.parent = transform;
-			obj.transform.position = obj.transform.parent.position;
+
+			weaponObject = obj;
+			Weapon = weaponObject.GetComponent<Weapon>();
+			var player = (Weapon.PickedUpBy = gameObject.GetComponent<Player>());
+
+			// Attach weapon to player
+			WeaponFollow.Attach(weaponObject.transform, player, new Vector2(.6f, -.1f));
 		} 
 	}
 

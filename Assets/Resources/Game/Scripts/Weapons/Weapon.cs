@@ -9,29 +9,35 @@ public abstract class Weapon : GameComponent
 	/// </summary>
 	public int amountOfUses;
 	public float cooldown;
-	public GameObject product; 
+	public GameObject product;
 
-	private float cooldownTime = 0; 
-
-	public void Start() 
+	protected bool CanShoot
 	{
+		get { return (cooldownTime <= 0); }
+	}
+	protected float cooldownTime;
+
+	void Start()
+	{
+		cooldownTime = 0; // Cooldown time set to zero, can shoot
 		//OwnedBy = Team.GetTeam(PickedUpBy);
 		Spawned();
 	}
 
-	public void Update()
+	void Update()
 	{
-		if (cooldownTime > 0) cooldownTime -= Time.deltaTime;
+		cooldownTime = Mathf.Max(cooldownTime - Time.deltaTime, 0);
 	}
 
-	public void FireWeapon() 
+	public void FireWeapon()
 	{
-		if (cooldownTime <= 0) 
+		if (CanShoot)
 		{
 			GameObject _product = (GameObject)Instantiate(product, transform.position, Quaternion.identity);
-			_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
-			if (amountOfUses != -1) amountOfUses--;
-			cooldownTime = cooldown;
+			//_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
+			amountOfUses = Mathf.Max(amountOfUses - 1, -1); // TODO: Why is this being clamped to -1 and not 0?
+
+			cooldownTime = cooldown; // Cooldown
 			WeaponFireBehaviour(_product);
 		}
 	}
@@ -44,5 +50,5 @@ public abstract class Weapon : GameComponent
 	/// <summary>
 	/// Code ran after method FireWeapon is run. Custom behaviour for weapon.
 	/// </summary>
-	protected abstract void WeaponFireBehaviour(GameObject product); 
+	protected abstract void WeaponFireBehaviour(GameObject product);
 }

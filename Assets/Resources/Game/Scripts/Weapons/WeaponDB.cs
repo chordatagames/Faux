@@ -4,33 +4,25 @@ using System.Collections.Generic;
 
 public class WeaponDB : ScriptableObject 
 {
-	public static WeaponDB instance;
-
 	[System.Serializable]
-	public class WeaponEntry 
+	public class WeaponEntry
 	{
-		public string name;
+		public string name; // I got a null reference exception on this, so...
 		[Header("GameObject MUST hold Weapon script.")]
 		public GameObject weapon;
 	}
-	
-	public static Dictionary<string,GameObject> WeaponDictionary;
 
-	[Header("Always populate dictionary after modifying.")]
-	[SerializeField] // Unity says you'll almost never need this. I just did motherfucker.
-	private WeaponEntry[] weaponEntries;
-	
-	public void PopulateDictionary() 
+	[SerializeField]
+	private List<WeaponEntry> weaponEntries = new List<WeaponEntry>(); 
+	private WeaponEntry[] WeaponEntries { get { return weaponEntries.ToArray(); } }
+
+	// This is just a lot fucking simpler ya feel me brostoevsky?
+	public GameObject Get(string name) 
 	{
-		WeaponDictionary = new Dictionary<string,GameObject>();
-		foreach (WeaponEntry we in weaponEntries) 
+		foreach (WeaponEntry e in WeaponEntries) 
 		{
-			WeaponDictionary.Add(we.name,we.weapon);
-		}
-	}
-
-	void OnEnable() 
-	{
-		instance = this;
+			if (e.name == name) return e.weapon;
+		} 
+		return null;
 	}
 }

@@ -44,5 +44,6 @@ public class Player : Living
 	public void PickUpWeapon(GameObject weapon) 
 	{
 		pw.WeaponObject = weapon;
+		pw.WeaponObject.transform.localScale = Vector3.Scale(pw.WeaponObject.transform.localScale,new Vector3(-1,1,1));
 	}
 }

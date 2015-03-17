@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 		if(Input.GetButtonDown(Axes[0]))
 		{
 			player.facingRight = !player.facingRight;
+			player.pw.WeaponObject.transform.localScale = Vector3.Scale(player.pw.WeaponObject.transform.localScale,new Vector3(-1,1,1));
 		}
 		if(Input.GetButtonDown(Axes[1]) && player.grounded)
 		{

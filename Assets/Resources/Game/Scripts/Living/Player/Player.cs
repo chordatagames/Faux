@@ -36,13 +36,11 @@ public class Player : Living
 
 	void Start()
 	{
-		PickUpWeapon(GameController.weaponDB.WeaponDictionary[startingWeapon]);
+		PickUpWeapon(GameController.WeaponDictionary.Get(startingWeapon));
 	}
 
 	public void PickUpWeapon(GameObject weapon) 
 	{
-		Debug.Log(pw.Weapon.name);
 		pw.WeaponObject = weapon;
-		pw.Weapon.PickedUpBy = this;
 	}
 }

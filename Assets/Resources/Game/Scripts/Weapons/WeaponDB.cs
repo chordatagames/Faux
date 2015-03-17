@@ -7,7 +7,7 @@ public class WeaponDB : ScriptableObject
 	[System.Serializable]
 	public class WeaponEntry
 	{
-		public string name { get { return weapon.name; } }
+		public string name; // I got a null reference exception on this, so...
 		[Header("GameObject MUST hold Weapon script.")]
 		public GameObject weapon;
 	}
@@ -16,14 +16,13 @@ public class WeaponDB : ScriptableObject
 	private List<WeaponEntry> weaponEntries = new List<WeaponEntry>(); 
 	private WeaponEntry[] WeaponEntries { get { return weaponEntries.ToArray(); } }
 
-	public Dictionary<string, GameObject> WeaponDictionary = new Dictionary<string,GameObject>();
-	public void PopulateDictionary() 
+	// This is just a lot fucking simpler ya feel me brostoevsky?
+	public GameObject Get(string name) 
 	{
-		WeaponDictionary.Clear();
-		foreach (WeaponEntry we in WeaponEntries) 
+		foreach (WeaponEntry e in WeaponEntries) 
 		{
-			WeaponDictionary.Add(we.name,we.weapon);
-		}
+			if (e.name == name) return e.weapon;
+		} 
+		return null;
 	}
-
 }

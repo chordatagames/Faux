@@ -10,7 +10,7 @@ public class GameController : MonoBehaviour //TODO make static
 
 	[SerializeField]
 	private WeaponDB wdb;
-	public static WeaponDB weaponDB { get { return instance.wdb; } }
+	public static WeaponDB WeaponDictionary { get { return instance.wdb; } }
 
 	public bool generateGame = false;
 
@@ -36,7 +36,7 @@ public class GameController : MonoBehaviour //TODO make static
 	Player[] Players {get { return players.ToArray(); } }
 
 	int playersInTeams = 0;
-	
+
 	void OnGUI()
 	{
 		if (!started)
@@ -134,10 +134,7 @@ public class GameController : MonoBehaviour //TODO make static
 				SetupPlayers();
 			}
 		}
-		
 	}
-
-	void Awake(){}
 
 	void Start()
 	{

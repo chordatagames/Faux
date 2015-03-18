@@ -25,8 +25,7 @@ public abstract class WeaponProduct : GameComponent {
 			print("Non-living object "+other.name+" hit by "+name);
 			OnHit(other.gameObject);
 		}
-		// check if player hit is relevant
-		if ((ShotBy.OwnedBy == living.OwnedBy && living.OwnedBy.friendlyFire) || living.OwnedBy != ShotBy.OwnedBy) 
+		else if ((ShotBy.OwnedBy == living.OwnedBy && living.OwnedBy.friendlyFire && ShotBy != living) || living.OwnedBy != ShotBy.OwnedBy) 
 		{
 			living.health -= damage;
 			OnHit(living);

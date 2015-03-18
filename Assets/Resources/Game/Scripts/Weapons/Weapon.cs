@@ -10,6 +10,7 @@ public abstract class Weapon : GameComponent
 	public int amountOfUses;
 	public float cooldown;
 	public GameObject product;
+	public Vector2 offset = Vector2.zero;
 
 	protected bool CanShoot
 	{
@@ -33,8 +34,8 @@ public abstract class Weapon : GameComponent
 	{
 		if (CanShoot)
 		{
-			GameObject _product = (GameObject)Instantiate(product, transform.position, Quaternion.identity);
-			//_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
+			GameObject _product = (GameObject)Instantiate(product, (Vector3) transform.position + (Vector3) offset, transform.rotation);
+			_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
 			amountOfUses = Mathf.Max(amountOfUses - 1, -1); // TODO: Why is this being clamped to -1 and not 0?
 
 			cooldownTime = cooldown; // Cooldown

@@ -8,7 +8,6 @@ public class GravityPulled : MonoBehaviour
 	GameObject[] attractors;
 	GameObject closest;
 
-
 	void Start ()
 	{
 		GetComponent<Rigidbody2D>().fixedAngle = false;
@@ -22,7 +21,7 @@ public class GravityPulled : MonoBehaviour
 		{
 			float dist = (transform.position - attractor.transform.position).magnitude;
 			float att = attractor.GetComponent<Rigidbody2D>().mass / Mathf.Pow(dist,2);
-			if( att > biggestAtt)
+			if (att > biggestAtt)
 			{
 				biggestAtt = att;
 				closest = attractor;
@@ -30,8 +29,13 @@ public class GravityPulled : MonoBehaviour
 		}
 	}
 
-	void Update ()
+	void Update()
 	{
+		if (closest == null) 
+		{
+			Debug.Log("closest is null"); // this was an issue
+			return;
+		}
 		closest.GetComponent<GravityAttractor>().Attract(gameObject, keepUpright);
 	}
 }

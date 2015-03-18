@@ -6,6 +6,8 @@ public class Player : Living
 {
 	public Team initTeam; //ONLY USE FOR SETTING THE INITIAL TEAM, Use Owned by otherwise
 
+	public PlayerData playerData;
+
 	public static int playerCount = 0;
 	public int playerID { get; set; }
 	public float acceleration;
@@ -34,4 +36,25 @@ public class Player : Living
 		pw.player = this;
 	}
 
+}
+
+public sealed class PlayerData
+{
+	public static int playerCount;
+
+	Team team;
+	Team initTeam;
+
+	public string 	playerName;
+	public int		playerID;
+
+	public GameObject playerPrefab;
+
+	public GameObject InstantiatePlayer()
+	{
+		Player p = GameObject.Instantiate<GameObject>(playerPrefab);
+		p.name = playerName;
+		p.playerData = this;
+		return p.gameObject;
+	}
 }

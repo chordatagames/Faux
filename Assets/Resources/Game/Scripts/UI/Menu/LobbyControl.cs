@@ -45,7 +45,7 @@ public class LobbyControl : MonoBehaviour
 
 	public void AddPlayer()
 	{
-		players.Add(Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player")).GetComponent<Player>());
+		players.Add(new PlayerData);
 		UpdatePlayerCount();
 	}
 	

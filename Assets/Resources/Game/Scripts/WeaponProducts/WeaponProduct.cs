@@ -33,7 +33,6 @@ public abstract class WeaponProduct : GameComponent {
 	}
 
 	protected abstract void Spawned();
-	// v these line up SO NICE
 	protected abstract void OnHit(Living living); // called when player is hit
 	protected abstract void OnHit(GameObject gc); // called when anything else is hit
 }

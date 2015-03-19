@@ -34,7 +34,7 @@ public abstract class Weapon : GameComponent
 	{
 		if (CanShoot)
 		{
-			GameObject _product = (GameObject)Instantiate(product, (Vector3) transform.position + (Vector3) offset, transform.rotation);
+			GameObject _product = (GameObject)Instantiate(product, transform.position + (Vector3) offset, transform.rotation);
 			_product.GetComponent<WeaponProduct>().ShotBy = PickedUpBy;
 			amountOfUses = Mathf.Max(amountOfUses - 1, -1); // TODO: Why is this being clamped to -1 and not 0?
 

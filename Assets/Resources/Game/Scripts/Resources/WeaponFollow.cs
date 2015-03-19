@@ -12,7 +12,7 @@ public class WeaponFollow : MonoBehaviour
 {
 	private const float BOB_INSENSITIVITY = 10f;
 	private const float BOB_SPEED = .3f;
-	private const float BOB_AMOUNT = .1f;
+	private const float BOB_AMOUNT = 0f;
 
 	private Living target = null;
 	private Rigidbody2D targetRigid = null;

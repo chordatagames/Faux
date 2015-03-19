@@ -10,12 +10,15 @@ public class SimpleGunProduct : WeaponProduct
 	protected override void Spawned()
 	{
 		rigidbody2d = GetComponent<Rigidbody2D>();
-		rigidbody2d.AddForce(new Vector2(force,0));
+		//this does a lot of weird things and isn't really wanted:
+		//rigidbody2d.velocity = ShotBy.GetComponent<Rigidbody2D>().velocity;
+		transform.rotation = ShotBy.transform.rotation;
+		rigidbody2d.AddForce((ShotBy.facingRight ? transform.right : -transform.right) * force);
 	}
 
 	protected override void OnHit(Living living)
 	{
-
+		Destroy(gameObject);
 	}
 
 	protected override void OnHit(GameObject obj) 

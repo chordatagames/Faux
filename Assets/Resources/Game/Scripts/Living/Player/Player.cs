@@ -4,7 +4,6 @@ using System.Collections.Generic;
 [RequireComponent(typeof(PlayerController), typeof(PlayerWeapon))] //PlayerAnimator is in child
 public class Player : Living
 {
-	public Team initTeam; //ONLY USE FOR SETTING THE INITIAL TEAM, Use Owned by otherwise
 
 	public PlayerData playerData;
 
@@ -26,7 +25,8 @@ public class Player : Living
 		playerID = playerCount;
 		playerCount++;
 
-		OwnedBy = initTeam;
+		OwnedBy = playerData.playerTeam;
+		Debug.Log("OwnedBy: " + OwnedBy);
 
 		pc = GetComponent<PlayerController>();
 		pc.player = this;

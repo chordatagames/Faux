@@ -12,18 +12,8 @@ public class Team : ScriptableObject
 	
 	public void RemovePlayer(Player p)
 	{
-		p.OwnedBy = p.initTeam;
+		p.OwnedBy = p.playerData.initTeam;
 		players.Remove (p);
-	}
-
-	public void SpawnPlayer() //OBSOLETE
-	{
-		GameObject player = (GameObject)Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Player"));
-		Player p = player.GetComponent<Player> ();
-		p.OwnedBy = this;
-		p.initTeam = this;
-		AddPlayer (p);
-		
 	}
 
 	public void AddPlayer(Player p)

@@ -43,7 +43,7 @@ public class LobbyControl : MonoBehaviour
 	{
 		foreach(PlayerData pd in PlayerDatas)
 		{
-			pd.InstantiatePlayer();
+			World.listPlayers.Add( pd.InstantiatePlayer().GetComponent<Player>() );
 		}
 	}
 

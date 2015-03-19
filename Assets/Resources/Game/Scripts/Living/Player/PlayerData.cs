@@ -25,7 +25,6 @@ public sealed class PlayerData : ScriptableObject
 
 	public GameObject InstantiatePlayer()
 	{
-		Debug.Log("Uh");
 		Player player = GameObject.Instantiate<GameObject>(playerPrefab).GetComponent<Player>();
 		player.name = playerName;
 		player.playerData = this;

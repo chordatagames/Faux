@@ -40,3 +40,11 @@ public class TeamAsset
 		ScriptableObjectUtil.CreateAsset<Team> ();
 	}
 }
+public class PlayerDataAsset
+{
+	[MenuItem("Assets/Create/PlayerData")]
+	public static void CreateAsset ()
+	{
+		ScriptableObjectUtil.CreateAsset<PlayerData> ();
+	}
+}

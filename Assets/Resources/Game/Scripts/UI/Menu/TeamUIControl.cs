@@ -6,11 +6,13 @@ using System.Collections.Generic;
 public class TeamUIControl : MonoBehaviour
 {
 	private Team team;
-	public int playersInTeam { get { return team.Players.Length; } }
+	private int playersInTeam = 0;
+
+	private LobbyControl lobby;
+
 	public InputField teamName;
 	public Slider red, green, blue;
 	public InputField playersInTeamField;
-	LobbyControl lobby;
 
 	void Awake()
 	{
@@ -25,20 +27,31 @@ public class TeamUIControl : MonoBehaviour
 
 	public void AddPlayerToTeam() //TODO The input-controller's own player joins this team
 	{
-		if (lobby.UnteamedPlayers().Length > 0) //Anyone to add
+		if (lobby.GetUnteamed().Length > 0) //Anyone to add
 		{
-			team.AddPlayer( lobby.UnteamedPlayers()[lobby.UnteamedPlayers().Length-1] );
+			lobby.GetUnteamed()[lobby.GetUnteamed().Length-1].playerTeam = team;
+			playersInTeam++;
+//			team.AddPlayer( lobby.GetUnteamed()[lobby.GetUnteamed().Length-1] );
+
 			UpdatePlayersInTeam();
 		}
-		Debug.Log("There are currently " + lobby.UnteamedPlayers().Length + " unteamed");
+		Debug.Log("There are currently " + lobby.GetUnteamed().Length + " unteamed");
 	}
 
 	
 	public void RemovePlayerFromTeam() //TODO The input-controller's own player leaves this team
 	{
-		if (team.Players.Length > 0) //Anyone to remove
+		if ( lobby.PlayerDatas.Length > lobby.GetUnteamed().Length) //Anyone to remove
 		{
-			team.RemovePlayer( team.Players[team.Players.Length-1] );
+			foreach (PlayerData pd in lobby.PlayerDatas)
+			{
+				if (pd.playerTeam == team) //Is player owned by the team removing players
+				{
+					pd.playerTeam = pd.initTeam;
+					playersInTeam--;
+					break;
+				}
+			}
 			UpdatePlayersInTeam();
 		}
 	}

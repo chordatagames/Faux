@@ -10,8 +10,8 @@ using System.Collections.Generic;
 /// </summary>
 public class LobbyControl : MonoBehaviour
 {
-	List<Player> players = new List<Player>();
-	public Player[] Players {get { return players.ToArray(); } }
+	List<PlayerData> playerDatas = new List<PlayerData>();
+	public PlayerData[] PlayerDatas {get { return playerDatas.ToArray(); } }
 
 	List<TeamUIControl> teamUIs = new List<TeamUIControl>();
 	TeamUIControl[] TeamUIs {get { return teamUIs.ToArray(); } }
@@ -19,12 +19,14 @@ public class LobbyControl : MonoBehaviour
 	public InputField playerCount;
 	public InputField notInTeams;
 	public Transform teamBox;
-	public Canvas canvas;
+
+	public GameObject teamUIPrefab;
+	public PlayerData defaultPlayerData;
 
 	
 	/// <summary>
 	/// Start this instance.
-	/// Set up a basic game with 2 players and 2 teams.
+	/// Set up a basic game with 2 playerDatas and 2 teams.
 	/// </summary>
 	void Start()
 	{
@@ -39,31 +41,40 @@ public class LobbyControl : MonoBehaviour
 	
 	public void StartGame()
 	{
-
+		foreach(PlayerData pd in PlayerDatas)
+		{
+			pd.InstantiatePlayer();
+		}
 	}
 
 
 	public void AddPlayer()
 	{
-		players.Add(new PlayerData);
+		//TODO - Set player name based on input-controller/client (set up in their playerTab?)
+		//TODO - Set player ID
+
+		PlayerData pd = ScriptableObject.CreateInstance<PlayerData>();
+		pd.Init( defaultPlayerData );
+		playerDatas.Add(pd);
+
 		UpdatePlayerCount();
 	}
 	
 	public void RemovePlayer()//Only removable if not in team already
 	{
-		if (Players.Length > 2 && (Players.Length-UnteamedPlayers().Length) >= 0 )
+		if (PlayerDatas.Length > 2 && (PlayerDatas.Length-GetUnteamed().Length) >= 0 )
 		{
-			Destroy(Players[ Players.Length-1 ].gameObject);
-			players.RemoveAt( Players.Length-1 );
+			Destroy(PlayerDatas[PlayerDatas.Length-1]);
+			playerDatas.RemoveAt( PlayerDatas.Length-1 );
 		}
 		UpdatePlayerCount();
 	}
 	
 	public void AddTeam()
 	{
-		if( TeamUIs.Length < Players.Length )
+		if( TeamUIs.Length < PlayerDatas.Length && GetUnteamed().Length > 0 )
 		{
-			GameObject newTeamUI = (GameObject)Instantiate( Resources.Load<GameObject>("Game/Prefabs/UI/Menu/TeamUI") );
+			GameObject newTeamUI = (GameObject)Instantiate<GameObject>(teamUIPrefab);
 			newTeamUI.transform.SetParent(teamBox, false);
 			teamUIs.Add( newTeamUI.GetComponent<TeamUIControl>() );
 		}
@@ -78,24 +89,24 @@ public class LobbyControl : MonoBehaviour
 		}
 	}
 
-	public Player[] UnteamedPlayers()
+	public PlayerData[] GetUnteamed()
 	{
-		List<Player> unteamedPlayers = new List<Player>();
-		foreach(Player p in Players)
+		List<PlayerData> unteamed = new List<PlayerData>();
+		foreach(PlayerData pd in PlayerDatas)
 		{
-			if (p.OwnedBy == p.initTeam) //Is player owned by Default Team - equivalent to 'unteamed'.
+			if (pd.playerTeam == pd.initTeam) //Is player owned by Default Team - equivalent to 'unteamed'.
 			{
-				unteamedPlayers.Add(p);
+				unteamed.Add(pd);
 			}
 		}
-		return unteamedPlayers.ToArray();
+		return unteamed.ToArray();
 	}
 
 	//Update UI
 
 	public void UpdatePlayerCount()
 	{
-		playerCount.text = Players.Length.ToString();
-		notInTeams.text = UnteamedPlayers().Length.ToString();
+		playerCount.text = PlayerDatas.Length.ToString();
+		notInTeams.text = GetUnteamed().Length.ToString();
 	}
 }

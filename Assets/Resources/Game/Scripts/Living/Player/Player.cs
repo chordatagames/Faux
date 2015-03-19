@@ -37,24 +37,3 @@ public class Player : Living
 	}
 
 }
-
-public sealed class PlayerData
-{
-	public static int playerCount;
-
-	Team team;
-	Team initTeam;
-
-	public string 	playerName;
-	public int		playerID;
-
-	public GameObject playerPrefab;
-
-	public GameObject InstantiatePlayer()
-	{
-		Player p = GameObject.Instantiate<GameObject>(playerPrefab);
-		p.name = playerName;
-		p.playerData = this;
-		return p.gameObject;
-	}
-}

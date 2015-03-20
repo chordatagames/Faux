@@ -20,7 +20,6 @@ public class Team : ScriptableObject
 	{
 		p.OwnedBy = this;
 		p.pa.UpdateColors();
-		Debug.Log ("Added Player: " + p);
 		players.Add(p);
 	}
 	

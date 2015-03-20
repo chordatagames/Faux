@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TeamUIControl : MonoBehaviour
+public class TeamControl : MonoBehaviour
 {
 	private Team team;
 	private int playersInTeam = 0;
@@ -53,6 +53,23 @@ public class TeamUIControl : MonoBehaviour
 				}
 			}
 			UpdatePlayersInTeam();
+		}
+	}
+
+	public void RemoveTeam()
+	{
+		if(lobby.GetUnteamed().Length > 0 && lobby.TeamUIs.Length > 2 )
+		{
+			for(int i = 0; i <= playersInTeam; i++)
+			{
+				RemovePlayerFromTeam();
+			}
+			ScriptableObject.Destroy(team);
+			team = null;
+			lobby.teamUIs.RemoveAt(lobby.teamUIs.IndexOf(this));
+			Destroy(gameObject);
+
+			UpdateLobbyPlayerCount();
 		}
 	}
 	

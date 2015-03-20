@@ -13,8 +13,8 @@ public class LobbyControl : MonoBehaviour
 	List<PlayerData> playerDatas = new List<PlayerData>();
 	public PlayerData[] PlayerDatas {get { return playerDatas.ToArray(); } }
 
-	List<TeamUIControl> teamUIs = new List<TeamUIControl>();
-	TeamUIControl[] TeamUIs {get { return teamUIs.ToArray(); } }
+	public List<TeamControl> teamUIs = new List<TeamControl>();
+	public TeamControl[] TeamUIs {get { return teamUIs.ToArray(); } }
 
 	public InputField playerCount;
 	public InputField notInTeams;
@@ -76,7 +76,7 @@ public class LobbyControl : MonoBehaviour
 		{
 			GameObject newTeamUI = (GameObject)Instantiate<GameObject>(teamUIPrefab);
 			newTeamUI.transform.SetParent(teamBox, false);
-			teamUIs.Add( newTeamUI.GetComponent<TeamUIControl>() );
+			teamUIs.Add( newTeamUI.GetComponent<TeamControl>() );
 		}
 	}
 	

@@ -7,8 +7,6 @@ public class Player : Living
 
 	public PlayerData playerData;
 
-	public static int playerCount = 0;
-	public int playerID { get; set; }
 	public float acceleration;
 	public float maxSpeed_TODO;//TODO
 	public float jumpForce;
@@ -22,11 +20,7 @@ public class Player : Living
 	
 	void Awake ()
 	{
-		playerID = playerCount;
-		playerCount++;
-
 		OwnedBy = playerData.playerTeam;
-		Debug.Log("OwnedBy: " + OwnedBy);
 
 		pc = GetComponent<PlayerController>();
 		pc.player = this;

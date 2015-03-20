@@ -25,16 +25,7 @@ public class GameController : MonoBehaviour //TODO make static
 	public int timer		= 0;
 	public int asteriods	= 0;
 	//=======GAMEOPTIONS========
-	
-	bool started = false;
 
-	List<Team> teams = new List<Team>();
-	Team[] Teams {get { return teams.ToArray(); } }
-
-	List<Player> players = new List<Player>();
-	Player[] Players {get { return players.ToArray(); } }
-
-	int playersInTeams = 0;
 
 	void Start()
 	{
@@ -46,13 +37,15 @@ public class GameController : MonoBehaviour //TODO make static
 		WorldOptions.GravityScale       = gravityScale;
 		WorldOptions.Planets            = planets;
 		WorldOptions.WorldSize          = worldSize;
-		
+
+
 		if (generateGame)
 		{
 			SpawnPlanets ();
 			SetupSpawnPoints ();
 			SetupFlags ();
 		}
+		SetupCameras();
 	}
 
 	void SpawnPlanets() //Temporary code for planet-generation

@@ -32,7 +32,7 @@ public class PlayerAnimator : MonoBehaviour
 
 		if(idleTime < 0)
 		{
-			anim.SetInteger("idleActivity", Mathf.RoundToInt(Random.Range(1,3)));
+			anim.SetInteger("idleActivity", (int)Mathf.Floor(Random.value*3)+1);
 			idleTime = Random.Range(0.0f, maxIdleTime);
 		}
 		else

@@ -4,10 +4,9 @@ using System.Collections.Generic;
 [RequireComponent(typeof(PlayerController), typeof(WeaponHolder))] //PlayerAnimator is in child
 public class Player : Living
 {
-	public Team initTeam; //ONLY USE FOR SETTING THE INITIAL TEAM, Use OwnedBy otherwise
 
-	public static int playerCount = 0;
-	public int playerID { get; set; }
+	public PlayerData playerData;
+
 	public float acceleration;
 	public float maxSpeed_TODO;//TODO
 	public float jumpForce;
@@ -22,10 +21,7 @@ public class Player : Living
 
 	void Awake()
 	{
-		playerID = playerCount;
-		playerCount++;
-
-		OwnedBy = initTeam;
+		OwnedBy = playerData.playerTeam;
 
 		pc = GetComponent<PlayerController>();
 		pc.player = this;

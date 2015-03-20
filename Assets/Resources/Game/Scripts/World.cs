@@ -4,8 +4,9 @@ using System.Collections.Generic;
 
 public static class World
 {
+	//THESE LISTS WILL BE FILLED DURING GAME SETUP TODO
 	public static List<Team> 				listTeams 		= new List<Team> ();
-	public static List<Player>				listPlayers 	= new List<Player> ();
+	public static List<Player>				listPlayers 	= new List<Player> ();//filled while in 'lobby'
 	public static List<Weapon>				listWeapon 		= new List<Weapon> ();
 	public static List<GravityAttractor>	listAttractors 	= new List<GravityAttractor> ();
 	public static List<Planet>				listPlanets 	= new List<Planet> ();

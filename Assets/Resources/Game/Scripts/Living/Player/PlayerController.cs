@@ -13,9 +13,8 @@ public class PlayerController : MonoBehaviour
 	{
 		for (int i=0; i<Axes.Length; i++)
 		{
-			Axes[i] += player.playerID;
+			Axes[i] += player.playerData.playerID;
 		}
-		name += player.playerID;
 		distToGround = GetComponent<Collider2D>().bounds.extents.y;
 	}
 	void Update () 

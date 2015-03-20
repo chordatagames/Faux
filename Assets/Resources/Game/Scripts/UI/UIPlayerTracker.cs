@@ -15,7 +15,7 @@ public class UIPlayerTracker : MonoBehaviour {
 		{
 			arrow = (GameObject)Instantiate(Resources.Load<GameObject> ("Game/Prefabs/UI/Arrow"));
 			arrow.GetComponent<RectTransform>().SetParent(GetComponent<RectTransform>(), false);
-			arrow.name += p.GetComponent<Player>().playerID;
+			arrow.name += p.GetComponent<Player>().playerData.playerID;
 			arrow.GetComponent<Arrow>().tracking = p.GetComponent<GameComponent>(); 		// 'Player' extends 'GameComponent'
 			arrows.Add( arrow );
 		}

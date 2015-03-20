@@ -49,3 +49,12 @@ public class WeaponDBAsset
 		ScriptableObjectUtil.CreateAsset<WeaponDB> ();
 	}
 }
+
+public class PlayerDataAsset //ONLY USED ONCE REALLY, TO OBTAIN THE "Default PlayerData as an asset"
+{
+	[MenuItem("Assets/Create/PlayerData")]
+	public static void CreateAsset ()
+	{
+		ScriptableObjectUtil.CreateAsset<PlayerData> ();
+	}
+}

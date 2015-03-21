@@ -7,7 +7,7 @@ public static class ScriptableObjectUtil
 	/// <summary>
 	//	This makes it easy to create, name and place unique new ScriptableObject asset files.
 	/// </summary>
-	public static void CreateAsset<T>() where T : ScriptableObject
+	public static void CreateAsset<T> () where T : ScriptableObject
 	{
 		T asset = ScriptableObject.CreateInstance<T> ();
 		
@@ -18,16 +18,16 @@ public static class ScriptableObjectUtil
 		} 
 		else if (Path.GetExtension (path) != "") 
 		{
-			path = path.Replace(Path.GetFileName(AssetDatabase.GetAssetPath(Selection.activeObject)), "");
+			path = path.Replace (Path.GetFileName (AssetDatabase.GetAssetPath (Selection.activeObject)), "");
 		}
 		
 		string assetPathAndName = AssetDatabase.GenerateUniqueAssetPath (path + "/New " + typeof(T).ToString() + ".asset");
 		
-		AssetDatabase.CreateAsset(asset, assetPathAndName);
+		AssetDatabase.CreateAsset (asset, assetPathAndName);
 		
-		AssetDatabase.SaveAssets();
+		AssetDatabase.SaveAssets ();
 		AssetDatabase.Refresh();
-		EditorUtility.FocusProjectWindow();
+		EditorUtility.FocusProjectWindow ();
 		Selection.activeObject = asset;
 	}
 }
@@ -35,17 +35,26 @@ public static class ScriptableObjectUtil
 public class TeamAsset
 {
 	[MenuItem("Assets/Create/Team")]
-	public static void CreateAsset()
+	public static void CreateAsset ()
 	{
-		ScriptableObjectUtil.CreateAsset<Team>();
+		ScriptableObjectUtil.CreateAsset<Team> ();
 	}
 }
 
 public class WeaponDBAsset
 {
 	[MenuItem("Assets/Create/WeaponDB")]
-	public static void CreateAsset()
+	public static void CreateAsset ()
 	{
 		ScriptableObjectUtil.CreateAsset<WeaponDB> ();
+	}
+}
+
+public class PlayerDataAsset //ONLY USED ONCE REALLY, TO OBTAIN THE "Default PlayerData as an asset"
+{
+	[MenuItem("Assets/Create/PlayerData")]
+	public static void CreateAsset ()
+	{
+		ScriptableObjectUtil.CreateAsset<PlayerData> ();
 	}
 }

@@ -7,8 +7,8 @@ public class PlayerCamera : MonoBehaviour
 {
 	public GameObject tracking{ get; set; }
 	public Canvas UI_Canvas{ get; set; }
-	
-	public float size = 10;
+	public GameObject arrowPrefab;
+	public float size = 7;
 
 	void Awake ()
 	{
@@ -24,8 +24,11 @@ public class PlayerCamera : MonoBehaviour
 		UI_Canvas = new GameObject(name + "_canvas", typeof(Canvas), typeof(CanvasScaler), typeof(CanvasRenderer), typeof(UIPlayerTracker)).GetComponent<Canvas>();
 		UI_Canvas.worldCamera = GetComponent<Camera>();
 		UI_Canvas.GetComponent<UIPlayerTracker> ().canvasOwner = tracking;
+		UI_Canvas.GetComponent<UIPlayerTracker> ().arrowPrefab = arrowPrefab;
 		UI_Canvas.renderMode = RenderMode.ScreenSpaceCamera;
 		UI_Canvas.planeDistance = 1;
+
+
 		//TODO set up UI elements.
 	}
 	

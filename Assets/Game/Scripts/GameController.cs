@@ -26,10 +26,17 @@ public class GameController : MonoBehaviour //TODO make static
 	public int asteriods	= 0;
 	//=======GAMEOPTIONS========
 
+	public GameObject planetPrefab;
+	public GameObject arrowPrefab;
+
+	void Awake()
+	{
+		instance = this;
+	}
 
 	void Start()
 	{
-		instance = this;
+
 
 		GameObject projectilesParent = new GameObject();
 		projectilesParent.name = "Projectiles";
@@ -56,7 +63,7 @@ public class GameController : MonoBehaviour //TODO make static
 			{
 				if((x+1)*(y+1) <= WorldOptions.Planets)
 				{
-					GameObject planet = (GameObject)Instantiate( Resources.Load<GameObject> ("Game/Prefabs/Planet") );
+					GameObject planet = (GameObject)Instantiate<GameObject>( planetPrefab );
 					planet.transform.localScale = Vector3.one * WorldOptions.WorldSize.x*Random.value/WorldOptions.Planets;
 					planet.transform.position = new Vector3 (x*10, y*10);
 				}
@@ -110,6 +117,7 @@ public class GameController : MonoBehaviour //TODO make static
 			player.trackCam.rect = screens[i];
 			pCam = player.trackCam.GetComponent<PlayerCamera>();
 			pCam.tracking = player.gameObject;
+			pCam.arrowPrefab = arrowPrefab;
 		}
 	}
 

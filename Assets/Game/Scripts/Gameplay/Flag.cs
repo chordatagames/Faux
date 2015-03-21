@@ -10,16 +10,11 @@ public class Flag : GameComponent, IPickupComponent
 	public Player HeldBy 	{ get; set; } 
 	public Team HeldByTeam { get { return Team.GetTeam ( HeldBy ); } }
 
+	public GameObject flagPrefab;
+
 	public void PickUp( Player player )
 	{
 		//TODO - Pickups?
 		HeldBy = player;
-	}
-
-	public static Flag SpawnFlag( Planet spawnBase )
-	{
-		GameObject flagObject = (GameObject)Instantiate(Resources.Load<GameObject>("Game/Prefabs/Flag"));
-
-		return new Flag ();
 	}
 }

@@ -19,7 +19,7 @@ public sealed class PlayerData : ScriptableObject
 		initTeam 		= defaultPlayerData.initTeam;
 		playerTeam		= initTeam;
 		playerName 		= defaultPlayerData.playerName;
-		playerID		= defaultPlayerData.playerID;
+		playerID		= playerCount++;
 		playerPrefab	= defaultPlayerData.playerPrefab;
 	}
 

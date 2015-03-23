@@ -4,10 +4,9 @@ using System.IO;
 
 public static class ScriptableObjectUtil
 {
-	public static void CreateAsset<T> (string path, string extension) where T : ScriptableObject
-	{
-		Input.
-	}
+//	public static void CreateAsset<T> (string path, string extension) where T : ScriptableObject
+//	{
+//	}
 
 	/// <summary>
 	//	This makes it easy to create, name and place unique new ScriptableObject asset files.

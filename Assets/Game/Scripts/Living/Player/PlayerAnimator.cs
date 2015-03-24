@@ -14,6 +14,7 @@ public class PlayerAnimator : MonoBehaviour
 	{
 		anim = GetComponent<Animator>();
 		parent = transform.parent;
+		player = parent.GetComponent<Player>();
 	}
 
 	public void UpdateColors ()
@@ -23,7 +24,6 @@ public class PlayerAnimator : MonoBehaviour
 
 	void Update () 
 	{
-
 		transform.localRotation = Quaternion.Euler( new Vector3(0,(player.facingRight ? 0 : 180), 0));
 
 		anim.SetFloat("horizontalVelocity", transform.InverseTransformDirection(parent.GetComponent<Rigidbody2D>().velocity).x);
@@ -32,7 +32,7 @@ public class PlayerAnimator : MonoBehaviour
 
 		if(idleTime < 0)
 		{
-			anim.SetInteger("idleActivity", (int)Mathf.Floor(Random.value*3)+1);
+			anim.SetInteger("idleActivity", Random.Range(1,3));
 			idleTime = Random.Range(0.0f, maxIdleTime);
 		}
 		else

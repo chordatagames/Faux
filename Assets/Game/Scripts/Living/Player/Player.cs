@@ -24,7 +24,6 @@ public class Player : Living
 		pa = transform.FindChild("Sprite").GetComponent<PlayerAnimator>();
 		pw = GetComponent<WeaponHolder>();
 		base.sprite = transform.FindChild("Sprite").GetComponent<SpriteRenderer>();
-		Debug.Log (sprite);
 	}
 
 	protected override void Start()

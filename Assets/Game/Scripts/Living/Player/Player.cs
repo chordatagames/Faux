@@ -12,26 +12,24 @@ public class Player : Living
 	public string startingWeapon; // TODO - access The WeaponDB and make dropdownmenu for selecting an item from the DB
 
 	public Camera trackCam { get; set; }
-	// throwMomentum per weapon makes more sense
-	
 	public PlayerController pc { get; set; }
 	public PlayerAnimator 	pa { get; set; }
 	public WeaponHolder		pw { get; set; }
 
-	void Awake()
+	protected override void Awake()
 	{
 		OwnedBy = playerData.playerTeam;
 
 		pc = GetComponent<PlayerController>();
-		pc.player = this;
 		pa = transform.FindChild("Sprite").GetComponent<PlayerAnimator>();
-		pa.player = this;
 		pw = GetComponent<WeaponHolder>();
+		base.sprite = transform.FindChild("Sprite").GetComponent<SpriteRenderer>();
+		Debug.Log (sprite);
 	}
 
-	void Start()
+	protected override void Start()
 	{
-		base.sprite = transform.FindChild("Sprite").GetComponent<SpriteRenderer>();
+		base.Start();
 		if (startingWeapon == "NoWeapon")
 			print("Starting weapon is NoWeapon"); //there's not a story here, promise
 		PickUpWeapon(GameController.WeaponDictionary.Get(startingWeapon));

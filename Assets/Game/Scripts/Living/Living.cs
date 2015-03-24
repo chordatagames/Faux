@@ -3,8 +3,10 @@ using System.Collections;
 
 public abstract class Living : GameComponent 
 {
+	public const float DAMAGE_COLOUR_TIME = 0.5f; // manually setting what should be consistent for every prefab was annoying
+
 	public float health;
-	public static float DAMAGE_COLOUR_TIME = 0.3f; // manually setting what should be consistent was annoying
+	public LayerMask groundMask;
 
 	public bool dead 		{ get; set; }
 	public bool grounded 	{ get; set; }
@@ -13,9 +15,16 @@ public abstract class Living : GameComponent
 	protected bool invulnerable;
 	protected SpriteRenderer sprite;
 
+	private float distToGround;
+
 	protected virtual void Awake()
 	{
 		sprite = GetComponent<SpriteRenderer>();
+	}
+
+	protected virtual void Start() 
+	{
+		distToGround = GetComponent<Collider2D>().bounds.extents.y;
 	}
 
 	protected virtual void Update()
@@ -28,7 +37,7 @@ public abstract class Living : GameComponent
 
 	public virtual void Kill()
 	{
-		dead = true; // what's the point of setting a var when it will be removed and inaccessible just after...
+		dead = true; // what's the point of setting a var when it will be removed & inaccessible just after...
 		Destroy(gameObject); 
 	}
 
@@ -41,12 +50,18 @@ public abstract class Living : GameComponent
 		}
 	}
 
-	IEnumerator DamageColour() {
+	void FixedUpdate() 
+	{
+		grounded = Physics2D.Raycast(transform.position, -transform.up, distToGround+0.15f, groundMask);
+	}
+
+	IEnumerator DamageColour() 
+	{
 		invulnerable = true;
-		SpriteRenderer sprite = GetComponent<SpriteRenderer>();
-		sprite.color = Color.red;
+		Color hold = sprite.material.GetColor("_Color");
+		sprite.material.SetColor("_Color",Color.red);
 		yield return new WaitForSeconds(DAMAGE_COLOUR_TIME);
-		sprite.color = Color.clear;
+		sprite.material.SetColor("_Color",hold);
 		invulnerable = false;
 	}
 }

@@ -1,28 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+/// <summary>
+/// F1X TH1S
+/// </summary>
 public class Blob : Living 
 {
 	public float acceleration;
 	public float topSpeed;
 	public float damage;
 
-	private Rigidbody2D rigidbody;
-	private SpriteRenderer sprite;
-
-	void Start()
+	[SerializeField]
+	private Team team;
+	private Rigidbody2D rb;
+	
+	protected override void Start ()
 	{
-		rigidbody = GetComponent<Rigidbody2D>();
-		sprite = GetComponent<SpriteRenderer>();
-		facingRight = Random.Range(0f,1f) > 0.5f;
-	}
-
-	void FixedUpdate()
-	{
-		if (rigidbody.velocity.magnitude < topSpeed) 
-		{
-			rigidbody.velocity = (facingRight ? transform.right : -transform.right) * acceleration;
-		}
+		base.Start();
+		rb = GetComponent<Rigidbody2D>();
+		OwnedBy = team;
 	}
 
 	void OnCollisionEnter2D(Collision2D collision) {

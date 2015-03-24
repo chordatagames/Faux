@@ -63,9 +63,9 @@ public class GameController : MonoBehaviour //TODO make static
 			{
 				if((x+1)*(y+1) <= WorldOptions.Planets)
 				{
-					GameObject planet = Instantiate<GameObject>( planetPrefab );
+					GameObject planet = (GameObject)Instantiate<GameObject>( planetPrefab );
 					planet.transform.localScale = Vector3.one * WorldOptions.WorldSize.x*Random.value/WorldOptions.Planets;
-					planet.transform.position = new Vector3(x*10, y*10);
+					planet.transform.position = new Vector3 (x*10, y*10);
 				}
 			}
 		}

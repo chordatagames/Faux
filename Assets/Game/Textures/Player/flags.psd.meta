@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 4773f92147df755499ac07f481d6b305
-timeCreated: 1425594427
+timeCreated: 1427132521
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -63,7 +63,7 @@ TextureImporter:
         width: 10
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flags_1
       rect:
@@ -73,7 +73,7 @@ TextureImporter:
         width: 10
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flags_2
       rect:
@@ -83,7 +83,7 @@ TextureImporter:
         width: 10
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flags_3
       rect:
@@ -93,7 +93,7 @@ TextureImporter:
         width: 10
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flags_4
       rect:
@@ -103,7 +103,7 @@ TextureImporter:
         width: 10
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
     - name: flags_5
       rect:
@@ -113,7 +113,7 @@ TextureImporter:
         width: 10
         height: 20
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

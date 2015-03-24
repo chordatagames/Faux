@@ -7,38 +7,43 @@ public class Team : ScriptableObject
 	public Color            teamColor = Color.white;
 	public bool             friendlyFire = false;
 	public Planet           SpawnPoint = null;
-	List<Player>            players = new List<Player>();
-	public Player[]         Players{ get{ return players.ToArray(); } }
-	
-	public void RemovePlayer(Player p)
-	{
-		p.OwnedBy = p.playerData.initTeam;
-		players.Remove (p);
+	private List<Living>     members = new List<Living>();
+	public Living[]         Members { get { return members.ToArray(); } }
+
+	public void RemoveMember(Living living) {
+		members.Remove(living);
+		living.OwnedBy = null;
 	}
 
-	public void AddPlayer(Player p)
+	public void RemoveMember(Player living)
+	{
+		living.OwnedBy = living.playerData.initTeam;
+		members.Remove(living);
+	}
+
+	public void AddMember(Player p)
 	{
 		p.OwnedBy = this;
 		p.pa.UpdateColors();
-		players.Add(p);
+		members.Add(p);
 	}
 	
-	public static Team GetTeam (string name) //Unreliable in some situations?
+	public static Team GetTeam (string name) // Unreliable in some situations?
 	{
-		foreach(Team t in World.Teams)
+		foreach(Team team in World.Teams)
 		{
-			if (t.name == name)
-			{ return t; }
+			if (team.name == name) return team;
 		}
 		return null;
 	}
-	public static Team GetTeam (Player player)
+
+	public static Team GetTeam (Living living)
 	{
-		return player.OwnedBy;
+		return living.OwnedBy;
 	}
 	
 	public override string ToString()
 	{
-		return(string.Format("({0},{1},{2},{3})", name, teamColor, friendlyFire, players.ToArray().ToString()));
+		return(string.Format("({0},{1},{2},{3})", name, teamColor, friendlyFire, members.ToArray().ToString()));
 	}
 }

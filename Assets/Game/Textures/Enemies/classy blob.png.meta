@@ -1,13 +1,11 @@
 fileFormatVersion: 2
-guid: 6c074c8aa88b1f745bdd93d87dcd97b1
-timeCreated: 1427132473
+guid: 31a7e2185b1cbd74ab9e8714031b1240
+timeCreated: 1427132595
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: ThornyKatana_0
-    21300002: ThornyKatana_1
-    21300004: ThornyKatana_2
-    21300006: ThornyKatana_3
+    21300000: classy blob_0
+    21300002: classy blob_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -30,8 +28,8 @@ TextureImporter:
   cubemapConvolutionSteps: 8
   cubemapConvolutionExponent: 1.5
   seamlessCubemap: 0
-  textureFormat: -1
-  maxTextureSize: 2048
+  textureFormat: -2
+  maxTextureSize: 32
   textureSettings:
     filterMode: 0
     aniso: 16
@@ -46,52 +44,32 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: .5, y: .5}
-  spriteBorder: {x: 0, y: 0, z: 48, w: 0}
+  spriteBorder: {x: 0, y: 0, z: 16, w: 0}
   spritePixelsToUnits: 16
   alphaIsTransparency: 1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
     sprites:
-    - name: ThornyKatana_0
+    - name: classy blob_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 16
         height: 16
-      alignment: 9
-      pivot: {x: .100000001, y: .100000001}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ThornyKatana_1
+    - name: classy blob_1
       rect:
         serializedVersion: 2
         x: 16
         y: 0
         width: 16
         height: 16
-      alignment: 9
-      pivot: {x: .100000001, y: .100000001}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ThornyKatana_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: .100000001, y: .100000001}
-      border: {x: 0, y: 0, z: 0, w: 0}
-    - name: ThornyKatana_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 9
-      pivot: {x: .100000001, y: .100000001}
+      alignment: 0
+      pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
   spritePackingTag: 
   userData: 

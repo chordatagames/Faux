@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public sealed class PlayerData : ScriptableObject
@@ -29,7 +29,7 @@ public sealed class PlayerData : ScriptableObject
 		playerID = playerCount++;
 		player.name = playerName;
 		player.playerData = this;
-		playerTeam.AddPlayer(player);
+		playerTeam.AddMember(player);
 		return player.gameObject;
 	}
 }

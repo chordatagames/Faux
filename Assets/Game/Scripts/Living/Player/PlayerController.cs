@@ -3,21 +3,22 @@ using System.Collections;
 
 public class PlayerController : MonoBehaviour
 {
-	public Player player { get; set; }
-
 	private string[] Axes = {"Flip", "Jump", "Fire", "Acc", "AccAxis"};
-	public LayerMask groundMask;
-	float distToGround;
-	
-	void Start ()
+	private Rigidbody2D rb;
+	private Player player;
+
+	void Start()
 	{
+		player = GetComponent<Player>();
 		for (int i=0; i<Axes.Length; i++)
 		{
 			Axes[i] += player.playerData.playerID;
 		}
-		distToGround = GetComponent<Collider2D>().bounds.extents.y;
+
+		rb = GetComponent<Rigidbody2D>();
 	}
-	void Update () 
+
+	void Update() 
 	{
 		if(Input.GetButtonDown(Axes[0]))
 		{
@@ -26,25 +27,24 @@ public class PlayerController : MonoBehaviour
 		}
 		if(Input.GetButtonDown(Axes[1]) && player.grounded)
 		{
-			GetComponent<Rigidbody2D>().AddForce( transform.TransformPoint( new Vector2(0,player.jumpForce*GetComponent<Rigidbody2D>().mass) ) );
+			rb.AddForce(transform.TransformPoint( new Vector2(0,player.jumpForce*GetComponent<Rigidbody2D>().mass)));
 		}
-		if ( Input.GetButtonDown(Axes[2]) )
+		if (Input.GetButtonDown(Axes[2]))
 		{
-
 			player.pw.Weapon.FireWeapon();
 		}
 	}
 
-	void FixedUpdate () 
+	void FixedUpdate() 
 	{
 		if (player.grounded)
 		{
-			if(Input.GetButton(Axes[3]) || Input.GetAxisRaw(Axes[4]) !=0)
+			if (Input.GetButton(Axes[3]) || Input.GetAxisRaw(Axes[4]) != 0)
 			{
 //				if(transform.InverseTransformVector(rigidbody2D.velocity).x < maxSpeed)
 //				{
 				Debug.DrawRay(transform.position, (player.facingRight ? transform.right : -transform.right),Color.magenta);
-				GetComponent<Rigidbody2D>().AddForce( (player.facingRight ? transform.right : -transform.right) * player.acceleration );
+				rb.AddForce((player.facingRight ? transform.right : -transform.right) * player.acceleration);
 //				}
 			}
 			GetComponent<Rigidbody2D>().drag = 0.075f;
@@ -53,6 +53,5 @@ public class PlayerController : MonoBehaviour
 		{
 			GetComponent<Rigidbody2D>().drag = 0.01f;
 		}
-		player.grounded = Physics2D.Raycast(transform.position, -transform.up, distToGround+0.15f, groundMask);
 	}
 }

@@ -26,11 +26,10 @@ public class PlayerController : MonoBehaviour
 		}
 		if(Input.GetButtonDown(Axes[1]) && player.grounded)
 		{
-			GetComponent<Rigidbody2D>().AddForce( transform.TransformPoint( new Vector2(0,player.jumpForce*GetComponent<Rigidbody2D>().mass) ) );
+			GetComponent<Rigidbody2D>().AddForce(transform.TransformPoint( new Vector2(0,player.jumpForce*GetComponent<Rigidbody2D>().mass)));
 		}
-		if ( Input.GetButtonDown(Axes[2]) )
+		if (Input.GetButtonDown(Axes[2]))
 		{
-
 			player.pw.Weapon.FireWeapon();
 		}
 	}

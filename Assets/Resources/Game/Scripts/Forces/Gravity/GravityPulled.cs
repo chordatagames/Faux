@@ -72,7 +72,7 @@ public class GravityPulled : MonoBehaviour
 		Vector2 dir = new Vector2(attractor.transform.position.x - transform.position.x, attractor.transform.position.y - transform.position.y).normalized;
 		if (Physics2D.OverlapCircle(transform.position, uprightRange, 1 << 9) != null)
 		{
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, -transform.up, uprightRange, 1 << 9);
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, -transform.up, Mathf.Infinity, 1 << 9);
 			if (hit != null)
 			{
 				if (hit.normal != -Vector2.up)

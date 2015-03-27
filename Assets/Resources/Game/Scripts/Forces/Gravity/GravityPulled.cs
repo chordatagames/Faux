@@ -13,12 +13,12 @@ public class GravityPulled : MonoBehaviour
 	{
 		GetComponent<Rigidbody2D>().fixedAngle = false;
 		attractors = World.GravityAttractors;
-		FindClosest();
+		UpdateClosest();
 	}
 
 	void FixedUpdate ()
 	{
-		FindClosest();
+		UpdateClosest();
 		Attract(closest);
 	}
 
@@ -35,7 +35,7 @@ public class GravityPulled : MonoBehaviour
 		}
 	}
 
-	private void FindClosest()
+	private void UpdateClosest()
 	{
 		float biggestAtt = 0;
 		foreach(GameObject attractor in attractors)
@@ -57,8 +57,8 @@ public class GravityPulled : MonoBehaviour
 	
 	public Vector2 AttractForce(GameObject attractor)
 	{
-	//	Debug.DrawLine(transform.position, attractor.transform.position, Color.blue);
-	//	Debug.DrawRay(transform.position, -(transform.position - attractor.transform.position).normalized, Color.red);
+		Debug.DrawLine(transform.position, attractor.transform.position, Color.blue);
+		Debug.DrawRay(transform.position, -(transform.position - attractor.transform.position).normalized, Color.red);
 		
 		return 
 			(attractor.transform.position - transform.position).normalized
@@ -70,10 +70,10 @@ public class GravityPulled : MonoBehaviour
 	public void KeepUpright(GameObject attractor) //Keep all calls of this function to Update, not FixedUpdate, or chracter will appear wrongly rotated when moving
 	{
 		Vector2 dir = new Vector2(attractor.transform.position.x - transform.position.x, attractor.transform.position.y - transform.position.y).normalized;
-		if (Physics2D.OverlapCircle(transform.position, uprightRange, 1 << 9) != null)
+		if (Physics2D.OverlapCircle(transform.position, uprightRange, 1 << 9 | 1 << 10) != null)
 		{
-			RaycastHit2D hit = Physics2D.Raycast (transform.position, -transform.up, Mathf.Infinity, 1 << 9);
-			if (hit != null)
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, -transform.up, uprightRange, 1 << 9 | 1 << 10);
+			if (hit.collider != null)
 			{
 				if (hit.normal != -Vector2.up)
 				{

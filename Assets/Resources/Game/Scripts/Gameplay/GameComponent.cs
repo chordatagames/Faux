@@ -5,7 +5,7 @@ using System.Collections;
 
 public abstract class GameComponent : MonoBehaviour
 {
-	[Header("What the fuck?")]
+	[Header("Game Component")]
 	public bool onlyOwnerUse = false; //Invalid for some?
 	public Team OwnedBy { get; set; }
 }

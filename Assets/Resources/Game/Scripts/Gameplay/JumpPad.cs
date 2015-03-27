@@ -30,13 +30,15 @@ public class JumpPad : GameComponent, IAlignable
 
 	public void AlignTo(Collider2D col)
 	{
-		if (col.GetType() == typeof(CircleCollider2D))
+		if (col.GetType() == typeof(CircleCollider2D) || col.GetType() == typeof(BoxCollider2D))
 		{
-			Vector2 fromCenterDir = (transform.position - col.transform.position).normalized;
-			transform.position = (Vector2)col.transform.position + fromCenterDir * col.transform.localScale.x/2;
+			Vector2 fromCenterDir = ((Vector2)(transform.position - col.transform.position)).normalized;
+			RaycastHit2D hit = Physics2D.Raycast (transform.position, -fromCenterDir, alignRadius, 1 << 9 | 1 << 10);
+			transform.position = hit.point;
+			Vector2 dir = -hit.normal;
 
-			float angle = Vector2.Angle(Vector2.right, -fromCenterDir) * Mathf.Deg2Rad*Mathf.Sign(-fromCenterDir.y) + Mathf.PI/2;
-			transform.rotation = new Quaternion( 0, 0, 1 * Mathf.Sin ( angle/2 ), Mathf.Cos ( angle/2 ) );
+			float angle = Vector2.Angle(Vector2.right, dir) * Mathf.Deg2Rad * Mathf.Sign(dir.y) + Mathf.PI/2;
+			transform.rotation = new Quaternion( 0, 0, Mathf.Sin ( angle/2 ), Mathf.Cos ( angle/2 ) );
 		}
 	}
 
